@@ -57,7 +57,7 @@ class ColorPopupFrame(QtWidgets.QFrame):
             'bg4': 'rgb(255, 200, 0)',
             'bg5': 'rgb(219, 68, 68)',
         }
-        self.bgcolor = self.color['bg3']
+        self.bgcolor = None
 
     def initUI(self):
         # 主布局
@@ -112,7 +112,7 @@ class ColorPopupFrame(QtWidgets.QFrame):
         elif isinstance(event, QtGui.QHoverEvent):
             if self.bgcolor != obj.bgcolor:
                 self.bgcolor = obj.bgcolor
-                windowsoptions['frameqss'] = makeFrameQss(self.bgcolor)
+                windowsoptions['frameqss'] = makeFrameQss(obj.bgcolor)
                 views['MainWindow'].setskin()
             return  False
         else:

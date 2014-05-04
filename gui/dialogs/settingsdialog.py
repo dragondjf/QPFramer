@@ -4,7 +4,6 @@ import os
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
-import requests
 
 if __name__ == '__main__':
     from basedialog import BaseDialog
