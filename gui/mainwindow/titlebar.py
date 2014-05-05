@@ -5,7 +5,7 @@ import os
 from PyQt5 import QtCore
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
-from .qrc_icons import *
+from gui.resources import *
 from .guiconfig import collectView, views
 from gui.uiconfig import __softwarename__ 
 
@@ -49,6 +49,7 @@ class TitleBar(QtWidgets.QFrame):
         self.initfullScreen()
 
         self.closeButton = QtWidgets.QToolButton()
+        self.closeButton.setObjectName("close")
         self.closeButton.setIconSize(iconBaseSize)
         self.closeButton.setIcon(QtGui.QIcon(":/icons/dark/appbar.close.png"))
 

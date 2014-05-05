@@ -6,15 +6,16 @@ from PyQt5 import QtCore
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
 from gui.mainwindow import collectView
+from .webkitbasepage import WebkitBasePage
 
-
-class AboutPage(QtWidgets.QFrame):
+class AboutPage(WebkitBasePage):
 
     viewID = "AboutPage"
 
     @collectView
     def __init__(self, parent=None):
         super(AboutPage, self).__init__(parent)
+        self.setObjectName("AboutPage")
         self.parent = parent
         self.initData()
         self.initUI()
@@ -23,9 +24,5 @@ class AboutPage(QtWidgets.QFrame):
         pass
 
     def initUI(self):
-
-        mainlayout = QtWidgets.QVBoxLayout()
-        mainlayout.addWidget(QtWidgets.QLabel("dffdfdfdfdfd"))
-        mainlayout.setContentsMargins(0, 0, 0, 0)
-        mainlayout.setSpacing(0)
-        self.setLayout(mainlayout)
+        url = QtCore.QUrl("http://www.baidu.com")
+        self.view.load(url)

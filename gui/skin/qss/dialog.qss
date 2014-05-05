@@ -1,5 +1,5 @@
 QDialog{
-    border:5px solid rgb(41, 153, 66);
+    border:2px solid rgb(41, 153, 66);
 }
 
 QPushButton

@@ -8,7 +8,14 @@ from PyQt5 import QtWidgets
 from .navgationbar import NavgationBar
 from .titlebar import TitleBar
 from .guiconfig import collectView, views
-# from gui.functionpages import MonitorPage, AlarmListPage, AboutPage
+from gui.functionpages import AboutPage, QWebBrowserPage
+
+buttonIds = ['Home', 'Qexer', 'QtWebkit', 'About', 'Exit']
+
+mapButtonPage = {
+    'About': AboutPage,
+    'QtWebkit': QWebBrowserPage
+}
 
 
 class CenterWindow(QtWidgets.QFrame):
@@ -27,39 +34,35 @@ class CenterWindow(QtWidgets.QFrame):
 
     def initUI(self):
 
-        titlebar = TitleBar(self)
-        navgationbar = NavgationBar(self)
+        self.titlebar = TitleBar(self)
+        self.navgationbar = NavgationBar(buttonIds, self)
 
-        # monitorpage = MonitorPage()
-        # alarmlistpage = AlarmListPage()
-        # aboutpage = AboutPage()
+        self.stackwiaget = QtWidgets.QStackedWidget()
 
-        # self.pages.update({"monitor": monitorpage})
-        # self.pages.update({"alarmList": alarmlistpage})
-        # self.pages.update({"about": aboutpage})
-
-        # self.stackwiaget = QtWidgets.QStackedWidget()
-        # self.stackwiaget.addWidget(monitorpage)
-        # self.stackwiaget.addWidget(alarmlistpage)
-        # self.stackwiaget.addWidget(aboutpage)
+        for key, classPage in mapButtonPage.items():
+            if hasattr(classPage, 'viewID'):
+                setattr(self, classPage.viewID, classPage())
+                page = getattr(self, classPage.viewID)
+                self.stackwiaget.addWidget(page)
+                self.pages.update({key: page})
 
         mainlayout = QtWidgets.QVBoxLayout()
-        mainlayout.addWidget(titlebar)
-        mainlayout.addWidget(navgationbar)
-        # mainlayout.addWidget(self.stackwiaget)
-        mainlayout.addStretch()
+        mainlayout.addWidget(self.titlebar)
+        mainlayout.addWidget(self.navgationbar)
+        mainlayout.addWidget(self.stackwiaget)
+        # mainlayout.addStretch()
         mainlayout.setContentsMargins(0, 0, 0, 0)
         mainlayout.setSpacing(0)
         self.setLayout(mainlayout)
 
-        # self.createPageConnection()
+        self.createPageConnection()
 
     def createPageConnection(self):
-        for buttonID, button in views['NavgationBar'].buttons.items():
+        for buttonID, button in self.navgationbar.buttons.items():
             button.clicked.connect(self.swicthPage)
 
     def swicthPage(self):
-        buttons = views['NavgationBar'].buttons
+        buttons = self.navgationbar.buttons
         for key, page in self.pages.items():
             if buttons[key] is self.sender():
                 self.stackwiaget.setCurrentWidget(page)

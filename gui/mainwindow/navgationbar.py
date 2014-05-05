@@ -25,9 +25,11 @@ class NavgationBar(QtWidgets.QFrame):
     viewID = "NavgationBar"
 
     @collectView
-    def __init__(self, parent=None):
+    def __init__(self, buttonIds, parent=None):
         super(NavgationBar, self).__init__(parent)
+        self.parent = parent
         self.setObjectName("NavgationBar")
+        self.buttonIds = buttonIds
         self.initData()
         self.initUI()
 
@@ -37,28 +39,14 @@ class NavgationBar(QtWidgets.QFrame):
     def initUI(self):
         baseHeight = 66
         self.setFixedHeight(baseHeight)
-        self.monitorButton = BaseToolButton(self.tr("监控管理"))
-        self.monitorButton.setObjectName("monitor")
-        self.monitorButton.setChecked(True)
-        self.alarmListButton = BaseToolButton(self.tr("历史告警"))
-        self.alarmListButton.setObjectName("alarmList")
-
-        self.aboutButton = BaseToolButton(self.tr("关于我们"))
-        self.aboutButton.setObjectName("about")
-
-        self.exitButton = BaseToolButton(self.tr("退出程序"))
-        self.exitButton.setObjectName("exit")
-
-        self.buttons.update({"monitor": self.monitorButton})
-        self.buttons.update({"alarmList": self.alarmListButton})
-        self.buttons.update({"about": self.aboutButton})
-        self.buttons.update({"exit": self.exitButton})
-
         mainLayout = QtWidgets.QHBoxLayout()
-        mainLayout.addWidget(self.monitorButton)
-        mainLayout.addWidget(self.alarmListButton)
-        mainLayout.addWidget(self.aboutButton)
-        mainLayout.addWidget(self.exitButton)        
+        for buttonId in self.buttonIds:
+            setattr(self, "%sButton" % buttonId, BaseToolButton(buttonId))
+            button = getattr(self, "%sButton" % buttonId)
+            button.setObjectName(buttonId)
+            mainLayout.addWidget(button)
+            self.buttons.update({buttonId: button})
+
         mainLayout.addStretch()
         mainLayout.setContentsMargins(10, 0, 0, 0)
         mainLayout.setSpacing(1)

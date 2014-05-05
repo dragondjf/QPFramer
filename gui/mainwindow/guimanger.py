@@ -16,7 +16,8 @@ class GuiManger(QtCore.QObject):
         self.initConnect()
 
     def initConnect(self):
-        views['NavgationBar'].exitButton.clicked.connect(views['MainWindow'].close)
+        exitButton = views['NavgationBar'].buttons['Exit']
+        exitButton.clicked.connect(views['MainWindow'].close)
         views['TitleBar'].skinButton.clicked.connect(self.changeBgColor)
 
     def changeBgColor(self):

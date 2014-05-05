@@ -15,6 +15,7 @@ def set_skin(widget, qssfile):
         fd.close()
         widget.setStyleSheet(style)
 
+
 class ColorLabel(QtWidgets.QLabel):
 
     def __init__(self, color, parent=None):
@@ -86,6 +87,9 @@ class ColorPopupFrame(QtWidgets.QFrame):
         mainlayout.setContentsMargins(2, 2, 2, 2)
         mainlayout.setSpacing(0)
         self.setLayout(mainlayout)
+
+    def initConnect(self):
+        self.customColorButton.clicked.connect(self.custom)
 
     def mousePressEvent(self, event):
         # 鼠标点击事件

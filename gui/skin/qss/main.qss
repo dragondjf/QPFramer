@@ -5,15 +5,65 @@ QMainWindow{
     color: rgb(0, 0, 255);
 }
 
-QStatusBar {
+QFrame#TitleBar{
+    background-color: transparent;
+}
+
+QFrame QLabel#TitleLabel{
     color: white;
-    background-color: rgb(0, 146, 63);
+    font-family: 'Verdana';
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+QFrame#NavgationBar{
+    background-color: transparent;
+    border-bottom: 2px solid black;
+}
+
+QFrame#QWebBrowserPage{
+    background-color: transparent;
+    border-bottom: none;
+}
+
+QToolBar {
+    background: transparent;
+    spacing: 0px; /* spacing between items in the tool bar */
+}
+
+
+QFrame#AboutPage{
+    background-color: white;
+    border-bottom: 2px solid black;
+}
+
+QProgressBar {
+    border: 1px solid white;
+    text-align: right;
+}
+
+QProgressBar::chunk {
+    background-color: lightgreen;
+    width: 20px;
+}
+
+QProgressBar QLineEdit{
+    border: none;
+    color: black;
+    padding-left: 5px;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+QStatusBar {
+    color: black;
+    background-color: transparent;
 }
 
 QStatusBar QLabel#datatimelabel{
     background-color: transparent;
     font: 16px;
-    color: white;
+    color: black;
 }
 
 QToolButton{
@@ -24,6 +74,22 @@ QToolButton{
 
 QToolButton:hover{
     background-color: lightgreen;
+    border: 1px;
+}
+
+QToolButton:disabled{
+    background-color: gray;
+    border: 1px;
+}
+
+QToolButton#close{
+    background-color: transparent;
+    color: white;
+}
+
+
+QToolButton#close:hover{
+    background-color: red;
     border: 1px;
 }
 
@@ -63,7 +129,7 @@ QPushButton#customColorButton:hover, QPushButton#customColorButton:pressed
     text-align: center;
 }
 
-QPushButton#monitor{
+QPushButton#Home{
     background-image: url(:/icons/dark/appbar.monitor.play.png);
     background-repeat:no-repeat;
     background-position: center bottom;
@@ -74,21 +140,21 @@ QPushButton#monitor{
     border-bottom: 2px solid black;
 }
 
-QPushButton#monitor:hover{
+QPushButton#Home:hover{
     background-color: lightgreen;
     border:1px  solid black;
 }
 
-QPushButton#monitor:checked{
+QPushButton#Home:checked{
     background-color: #00CD00;
     color: white;
 }
 
-QPushButton#monitor:flat{
+QPushButton#Home:flat{
     border: none;
 }
 
-QPushButton#alarmList{
+QPushButton#Qexer{
     background-image: url(:/icons/dark/appbar.list.png);
     background-repeat:no-repeat;
     background-position: center bottom;
@@ -101,22 +167,22 @@ QPushButton#alarmList{
 
 }
 
-QPushButton#alarmList:hover{
+QPushButton#Qexer:hover{
     background-color: lightgreen;
     border:1px  black;
     opacity: 0.1;
 }
 
-QPushButton#alarmList:checked{
+QPushButton#Qexer:checked{
     background-color: #00CD00;
     color: white;
 }
 
-QPushButton#alarmList:flat{
+QPushButton#Qexer:flat{
     border: none;
 }
 
-QPushButton#about{
+QPushButton#About{
     background-image: url(:/icons/dark/appbar.message.smiley.png);
     background-repeat:no-repeat;
     background-position: center bottom;
@@ -127,23 +193,49 @@ QPushButton#about{
     padding-bottom: 5px;
 }
 
-QPushButton#about:hover{
+QPushButton#About:hover{
     background-color: lightgreen;
     border:1px  black;
     opacity: 0.1;
 }
 
-QPushButton#about:checked{
+QPushButton#About:checked{
     background-color: #00CD00;
     color: white;
 }
 
-QPushButton#about:flat{
+QPushButton#About:flat{
+    border: none;
+}
+
+QPushButton#QtWebkit{
+    background-image: url(:/icons/dark/appbar.os.chromium.png);
+    background-repeat:no-repeat;
+    background-position: center bottom;
+    background-color: transparent;
+    background-color: transparent;
+    color: white;
+    text-align: center bottom;
+    padding-bottom: 5px;
+}
+
+QPushButton#QtWebkit:hover{
+    background-color: lightgreen;
+    border:1px  black;
+    opacity: 0.1;
+}
+
+QPushButton#QtWebkit:checked{
+    background-color: #00CD00;
+    color: white;
+}
+
+QPushButton#QtWebkit:flat{
     border: none;
 }
 
 
-QPushButton#exit{
+QPushButton#Exit{
     background-image: url(:/icons/dark/appbar.app.remove.png);
     background-repeat:no-repeat;
     background-position: center bottom;
@@ -154,18 +246,18 @@ QPushButton#exit{
     padding-bottom: 5px;
 }
 
-QPushButton#exit:hover{
+QPushButton#Exit:hover{
     background-color: lightgreen;
     border:1px  black;
     opacity: 0.1;
 }
 
-QPushButton#exit:checked{
+QPushButton#Exit:checked{
     background-color: #00CD00;
     color: white;
 }
 
-QPushButton#exit:flat{
+QPushButton#Exit:flat{
     border: none;
 }
 
