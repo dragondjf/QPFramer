@@ -39,6 +39,7 @@ class ColorPopupFrame(QtWidgets.QFrame):
         self.setWindowFlags(QtCore.Qt.Popup)
         self.initData()
         self.initUI()
+        self.initConnect()
         
         if 'TitleBar' in views:
             p = views['TitleBar'].mapToGlobal(views['TitleBar'].skinButton.pos())
@@ -55,7 +56,7 @@ class ColorPopupFrame(QtWidgets.QFrame):
             'bg1': 'rgb(54, 178, 230)',
             'bg2': 'rgb(55, 56, 57)',
             'bg3': 'rgb(41, 153, 66)',
-            'bg4': 'rgb(255, 200, 0)',
+            'bg4': 'rgb(212, 200, 30)',
             'bg5': 'rgb(219, 68, 68)',
         }
         self.bgcolor = None
@@ -89,7 +90,18 @@ class ColorPopupFrame(QtWidgets.QFrame):
         self.setLayout(mainlayout)
 
     def initConnect(self):
-        self.customColorButton.clicked.connect(self.custom)
+        self.customColorButton.clicked.connect(self.customColor)
+
+    def customColor(self):
+
+        colordialog = QtWidgets.QColorDialog(QtGui.QColor("green"))
+        colordialog.colorSelected.connect(self.updateBg)
+        colordialog.exec_()
+
+    def updateBg(self, color):
+        self.bgcolor = 'rgb(%s, %s, %s)' % (color.red(), color.green(), color.blue())
+        windowsoptions['frameqss'] = makeFrameQss(self.bgcolor)
+        views['MainWindow'].setskin()
 
     def mousePressEvent(self, event):
         # 鼠标点击事件
