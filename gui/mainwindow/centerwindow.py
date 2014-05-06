@@ -8,11 +8,12 @@ from PyQt5 import QtWidgets
 from .navgationbar import NavgationBar
 from .titlebar import TitleBar
 from .guiconfig import collectView, views
-from gui.functionpages import AboutPage, QWebBrowserPage
+from gui.functionpages import QssMakerPage, AboutPage, QWebBrowserPage
 
 buttonIds = ['Home', 'QssMaker', 'Qexer', 'QtWebkit', 'About', 'Exit']
 
 mapButtonPage = {
+    'QssMaker': QssMakerPage,
     'About': AboutPage,
     'QtWebkit': QWebBrowserPage
 }

@@ -8,15 +8,15 @@ from gui.mainwindow import collectView, views
 from gui.uiconfig import windowsoptions
 
 
-class QssMaker(QtWidgets.QFrame):
+class QssMakerPage(QtWidgets.QFrame):
 
-    viewID = "QssMaker"
+    viewID = "QssMakerPage"
 
     @collectView
     def __init__(self, parent=None):
-        super(QssMaker, self).__init__(parent)
+        super(QssMakerPage, self).__init__(parent)
         self.parent = parent
-        self.setObjectName("QssMaker")
+        self.setObjectName("QssMakerPage")
         self.initUI()
 
     def initUI(self):
