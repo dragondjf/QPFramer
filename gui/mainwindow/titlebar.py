@@ -8,6 +8,8 @@ from PyQt5 import QtWidgets
 from gui.resources import *
 from .guiconfig import collectView, views
 from gui.uiconfig import __softwarename__ 
+from gui.menus import SettingsMenu
+
 
 class TitleBar(QtWidgets.QFrame):
 
@@ -22,6 +24,7 @@ class TitleBar(QtWidgets.QFrame):
         self.initUI()
 
     def initData(self):
+        self.settingDownIcon = QtGui.QIcon(":/icons/dark/appbar.control.down.png")
         self.clothesIcon = QtGui.QIcon(":/icons/dark/appbar.clothes.shirt.png")
         self.minIcon = QtGui.QIcon(":/icons/dark/appbar.minus.png")
         self.maxIcon = QtGui.QIcon(":/icons/dark/appbar.fullscreen.box.png")
@@ -40,6 +43,14 @@ class TitleBar(QtWidgets.QFrame):
         self.skinButton.setIcon(self.clothesIcon)
         self.skinButton.setIconSize(iconBaseSize)
 
+        self.settingDownButton = QtWidgets.QToolButton()
+        self.settingDownButton.setIcon(self.settingDownIcon)
+        self.settingDownButton.setIconSize(iconBaseSize)
+        self.settingDownButton.setArrowType(QtCore.Qt.NoArrow)
+        self.settingsmenu = SettingsMenu(self)
+        self.settingDownButton.setMenu(self.settingsmenu)
+        self.settingDownButton.clicked.connect(self.settingDownButton.showMenu)
+
         self.minButton = QtWidgets.QToolButton()
         self.minButton.setIcon(self.minIcon)
         self.minButton.setIconSize(iconBaseSize)
@@ -57,6 +68,7 @@ class TitleBar(QtWidgets.QFrame):
         mainLayout.addWidget(self.titleLabel)
         mainLayout.addStretch()
         mainLayout.addWidget(self.skinButton)
+        mainLayout.addWidget(self.settingDownButton)
         mainLayout.addWidget(self.minButton)
         mainLayout.addWidget(self.maxButton)
         mainLayout.addWidget(self.closeButton)

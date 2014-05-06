@@ -178,6 +178,7 @@
     <file>icons/dark/appbar.connection.wifi.png</file>
     <file>icons/dark/appbar.console.png</file>
     <file>icons/dark/appbar.contrast.png</file>
+    <file>icons/dark/appbar.control.down.png</file>
     <file>icons/dark/appbar.control.eject.png</file>
     <file>icons/dark/appbar.control.fastforward.png</file>
     <file>icons/dark/appbar.control.guide.png</file>
@@ -924,26 +925,6 @@
     <file>icons/dark/appbar.video.standarddefinition.png</file>
     <file>icons/dark/appbar.vip.lowercase.png</file>
     <file>icons/dark/appbar.vip.png</file>
-    <file>icons/dark/appbar.visualstudio.news.png</file>
-    <file>icons/dark/appbar.visualstudio.png</file>
-    <file>icons/dark/appbar.warning.circle.png</file>
-    <file>icons/dark/appbar.warning.png</file>
-    <file>icons/dark/appbar.weather.chance.png</file>
-    <file>icons/dark/appbar.weather.overcast.png</file>
-    <file>icons/dark/appbar.weather.rain.png</file>
-    <file>icons/dark/appbar.weather.snow.png</file>
-    <file>icons/dark/appbar.weather.station.png</file>
-    <file>icons/dark/appbar.weather.sun.png</file>
-    <file>icons/dark/appbar.weather.symbol.png</file>
-    <file>icons/dark/appbar.weather.thunder.png</file>
-    <file>icons/dark/appbar.webcam.png</file>
-    <file>icons/dark/appbar.windowsphone.png</file>
-    <file>icons/dark/appbar.xbox.png</file>
-    <file>icons/dark/appbar.youtube.play.png</file>
-    <file>icons/dark/appbar.youtube.png</file>
-    <file>icons/dark/appbar.zune.png</file>
-  </qresource>
-  <qresource>
     <file>icons/light/appbar.acorn.png</file>
     <file>icons/light/appbar.add.png</file>
     <file>icons/light/appbar.adobe.acrobat.png</file>
@@ -1122,6 +1103,7 @@
     <file>icons/light/appbar.connection.wifi.png</file>
     <file>icons/light/appbar.console.png</file>
     <file>icons/light/appbar.contrast.png</file>
+    <file>icons/light/appbar.control.down.png</file>
     <file>icons/light/appbar.control.eject.png</file>
     <file>icons/light/appbar.control.fastforward.png</file>
     <file>icons/light/appbar.control.guide.png</file>
@@ -1886,5 +1868,23 @@
     <file>icons/light/appbar.youtube.play.png</file>
     <file>icons/light/appbar.youtube.png</file>
     <file>icons/light/appbar.zune.png</file>
+    <file>icons/dark/appbar.visualstudio.news.png</file>
+    <file>icons/dark/appbar.visualstudio.png</file>
+    <file>icons/dark/appbar.warning.circle.png</file>
+    <file>icons/dark/appbar.warning.png</file>
+    <file>icons/dark/appbar.weather.chance.png</file>
+    <file>icons/dark/appbar.weather.overcast.png</file>
+    <file>icons/dark/appbar.weather.rain.png</file>
+    <file>icons/dark/appbar.weather.snow.png</file>
+    <file>icons/dark/appbar.weather.station.png</file>
+    <file>icons/dark/appbar.weather.sun.png</file>
+    <file>icons/dark/appbar.weather.symbol.png</file>
+    <file>icons/dark/appbar.weather.thunder.png</file>
+    <file>icons/dark/appbar.webcam.png</file>
+    <file>icons/dark/appbar.windowsphone.png</file>
+    <file>icons/dark/appbar.xbox.png</file>
+    <file>icons/dark/appbar.youtube.play.png</file>
+    <file>icons/dark/appbar.youtube.png</file>
+    <file>icons/dark/appbar.zune.png</file>
   </qresource>
 </RCC>
