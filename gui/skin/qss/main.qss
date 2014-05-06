@@ -205,6 +205,32 @@ QPushButton#Home:flat{
     border: none;
 }
 
+QPushButton#QssMaker{
+    background-image: url(:/icons/dark/appbar.tree.leaf.three.png);
+    background-repeat:no-repeat;
+    background-position: center bottom;
+    background-color: transparent;
+    color: white;
+    text-align: center bottom;
+    padding-bottom: 5px;
+    border-bottom: 2px solid black;
+}
+
+QPushButton#QssMaker:hover{
+    background-color: lightgreen;
+    border:1px  solid black;
+}
+
+QPushButton#QssMaker:checked{
+    background-color: #00CD00;
+    color: white;
+}
+
+QPushButton#QssMaker:flat{
+    border: none;
+}
+
+
 QPushButton#Qexer{
     background-image: url(:/icons/dark/appbar.list.png);
     background-repeat:no-repeat;

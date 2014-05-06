@@ -10,7 +10,7 @@ from .titlebar import TitleBar
 from .guiconfig import collectView, views
 from gui.functionpages import AboutPage, QWebBrowserPage
 
-buttonIds = ['Home', 'Qexer', 'QtWebkit', 'About', 'Exit']
+buttonIds = ['Home', 'QssMaker', 'Qexer', 'QtWebkit', 'About', 'Exit']
 
 mapButtonPage = {
     'About': AboutPage,
