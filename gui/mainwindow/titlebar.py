@@ -47,6 +47,7 @@ class TitleBar(QtWidgets.QFrame):
         self.settingDownButton.setIcon(self.settingDownIcon)
         self.settingDownButton.setIconSize(iconBaseSize)
         self.settingDownButton.setArrowType(QtCore.Qt.NoArrow)
+        self.settingDownButton.setPopupMode(QtWidgets.QToolButton.MenuButtonPopup)
         self.settingsmenu = SettingsMenu(self)
         self.settingDownButton.setMenu(self.settingsmenu)
         self.settingDownButton.clicked.connect(self.settingDownButton.showMenu)

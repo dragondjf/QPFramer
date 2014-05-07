@@ -133,6 +133,19 @@ QToolButton:disabled{
     border: 1px;
 }
 
+QToolButton[popupMode="1"] { /* only for MenuButtonPopup */
+    padding-right: 0px; /* make way for the popup button */
+}
+
+QToolButton::menu-button {
+    border: none;
+}
+
+QToolButton::menu-arrow {
+    image: none;
+}
+
+
 QToolButton#close{
     background-color: transparent;
     color: white;
