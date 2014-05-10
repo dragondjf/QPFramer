@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import collections
 from PyQt5 import QtCore
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
@@ -14,12 +13,14 @@ from gui.functionpages import QssMakerPage, AboutPage, QWebBrowserPage, QmlViewe
 
 buttonIds = ['Home', 'QssMaker', 'Qexer', 'QtWebkit', 'QmlViewer', 'About', 'Exit']
 
-mapButtonPage = collections.OrderedDict({
+
+
+mapButtonPage = {
     'QssMaker': QssMakerPage,
     'About': AboutPage,
     'QtWebkit': QWebBrowserPage,
     'QmlViewer': QmlViewer
-})
+}
 
 
 class CenterWindow(QtWidgets.QFrame):
@@ -43,12 +44,14 @@ class CenterWindow(QtWidgets.QFrame):
 
         self.stackwiaget = QtWidgets.QStackedWidget()
 
-        for key, classPage in mapButtonPage.items():
-            if hasattr(classPage, 'viewID'):
-                setattr(self, classPage.viewID, classPage())
-                page = getattr(self, classPage.viewID)
-                self.stackwiaget.addWidget(page)
-                self.pages.update({key: page})
+        for key in buttonIds:
+            if key in mapButtonPage:
+                classPage = mapButtonPage[key]
+                if hasattr(classPage, 'viewID'):
+                    setattr(self, classPage.viewID, classPage())
+                    page = getattr(self, classPage.viewID)
+                    self.stackwiaget.addWidget(page)
+                    self.pages.update({key: page})
 
         mainlayout = QtWidgets.QVBoxLayout()
         mainlayout.addWidget(self.titlebar)
