@@ -15,7 +15,7 @@ class QuickViwer(QtQuick.QQuickView):
     def __init__(self, parent=None):
         super(QuickViwer, self).__init__(parent)
         self.setResizeMode(self.SizeRootObjectToView)
-        self.setSource(QtCore.QUrl.fromLocalFile('gui/qml/demo.qml'))
+        self.setSource(QtCore.QUrl.fromLocalFile('gui/qml/tiger/tiger.qml'))
 
 
 class QmlViewer(QtWidgets.QFrame):
