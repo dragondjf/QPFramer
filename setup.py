@@ -104,7 +104,7 @@ def write_file(filename, content):
 buildOptions = dict(
     packages=[],
     excludes=[],
-    # includes=['PyQt5.QtWebKit', "PyQt5.QtPrintSupport"],
+    includes=['PyQt5.QtWebKit', "PyQt5.QtPrintSupport"],
     icon="gui\skin\images\QFramer.ico",
 )
 
