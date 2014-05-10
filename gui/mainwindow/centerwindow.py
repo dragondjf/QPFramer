@@ -2,21 +2,24 @@
 # -*- coding: utf-8 -*-
 
 import os
+import collections
 from PyQt5 import QtCore
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
 from .navgationbar import NavgationBar
 from .titlebar import TitleBar
 from .guiconfig import collectView, views
-from gui.functionpages import QssMakerPage, AboutPage, QWebBrowserPage
+from gui.functionpages import QssMakerPage, AboutPage, QWebBrowserPage, QmlViewer
 
-buttonIds = ['Home', 'QssMaker', 'Qexer', 'QtWebkit', 'About', 'Exit']
 
-mapButtonPage = {
+buttonIds = ['Home', 'QssMaker', 'Qexer', 'QtWebkit', 'QmlViewer', 'About', 'Exit']
+
+mapButtonPage = collections.OrderedDict({
     'QssMaker': QssMakerPage,
     'About': AboutPage,
-    'QtWebkit': QWebBrowserPage
-}
+    'QtWebkit': QWebBrowserPage,
+    'QmlViewer': QmlViewer
+})
 
 
 class CenterWindow(QtWidgets.QFrame):

@@ -324,6 +324,32 @@ QPushButton#QtWebkit:flat{
     border: none;
 }
 
+QPushButton#QmlViewer{
+    background-image: url(:/icons/dark/appbar.image.redeye.png);
+    background-repeat:no-repeat;
+    background-position: center bottom;
+    background-color: transparent;
+    background-color: transparent;
+    color: white;
+    text-align: center bottom;
+    padding-bottom: 5px;
+}
+
+QPushButton#QmlViewer:hover{
+    background-color: lightgreen;
+    border:1px  black;
+    opacity: 0.1;
+}
+
+QPushButton#QmlViewer:checked{
+    background-color: #00CD00;
+    color: white;
+}
+
+QPushButton#QmlViewer:flat{
+    border: none;
+}
+
 
 QPushButton#Exit{
     background-image: url(:/icons/dark/appbar.app.remove.png);

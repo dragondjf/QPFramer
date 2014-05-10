@@ -1,10 +1,12 @@
-import QtQuick.Controls 1.1
+import QtQuick 2.0
 
-ApplicationWindow {
-    title: "My Application"
+Rectangle {
+    width: 200
+    height: 100
+    color: "red"
 
-    Button {
-        text: "Push Me"
+    Text {
         anchors.centerIn: parent
+        text: "Hello, World!"
     }
 }
