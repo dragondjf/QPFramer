@@ -139,6 +139,15 @@ def write_file(filename, content):
     fd.write(content)
     fd.close()
 
+def getqmlfiles():
+    path_pyqt5 = os.sep.join([PyQt5.__path__[0], 'qml'])
+    path_platforms = []
+    for root, dirs, files in os.walk(path_pyqt5):
+        for f in files:
+            abs_path = os.path.join(root, f)
+            path_platforms.append((abs_path, os.path.join("qml", os.path.relpath(abs_path, path_pyqt5))))
+    return path_platforms
+
 
 buildOptions = dict(
     packages=[],
@@ -185,6 +194,9 @@ if __name__ == '__main__':
 
     for item in ['skin', 'qml']:
         shutil.copytree(os.sep.join([os.getcwd(), 'gui', item]), os.sep.join([build_path, 'gui', item]))
+
+    for item in ['qml']:
+        shutil.copytree(os.sep.join([path_pyqt5, item]), os.sep.join([build_path, item]))
 
     for item in ['qml']:
         copytree(os.sep.join([path_pyqt5, item]), os.sep.join([build_path]))
