@@ -19,11 +19,27 @@ ApplicationWindow {
             GradientStop { position: 1.0; color: "green" }
         }
 
-        Flickable {
+        MouseArea {
             anchors.fill: parent
-            contentWidth: image.width; contentHeight: image.height
-            Image { id: image; source: "images/butterfly_bak.png" }
+            onClicked: label.moveTo(mouse.x, mouse.y)
         }
+
+        Text {
+            id: label
+
+            function moveTo(newX, newY) {
+                label.x = newX;
+                label.y = newY;
+            }
+
+            text: "Move me!"
+        }
+
+        // Flickable {
+        //     anchors.fill: parent
+        //     contentWidth: image.width; contentHeight: image.height
+        //     Image { id: image; source: "images/butterfly_bak.png" }
+        // }
         focus: true
         Keys.onPressed: {
             if (event.key == Qt.Key_F1){
@@ -88,5 +104,11 @@ ApplicationWindow {
                 color: "yellow"
             }
         }
+    }
+
+
+    function moveTo(obj, newX, newY) {
+        obj.x = newX;
+        obj.y = newY;
     }
 }
