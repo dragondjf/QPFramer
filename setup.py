@@ -149,32 +149,34 @@ def getqmlfiles():
     return path_platforms
 
 
-buildOptions = dict(
-    packages=[],
-    excludes=[],
-    includes=['PyQt5.QtWebKit', 'PyQt5.QtQml', "PyQt5.QtPrintSupport"],
-    icon="gui\skin\images\QFramer.ico",
-)
 
-
-if sys.platform == 'win32':
-    base = 'Win32GUI'
-else:
-    base = None
-
-executables = [
-    Executable(
-        'main.py',
-        base=base,
-        icon="gui\skin\images\QFramer.ico",
-        targetName="QFramer.exe",
-        appendScriptToExe=False,
-        appendScriptToLibrary=True,
-    )
-]
 
 
 if __name__ == '__main__':
+
+    buildOptions = dict(
+        packages=[],
+        excludes=[],
+        includes=['PyQt5.QtWebKit', 'PyQt5.QtQml', "PyQt5.QtPrintSupport"],
+        icon="gui\skin\images\QFramer.ico",
+    )
+
+
+    if sys.platform == 'win32':
+        base = 'Win32GUI'
+    else:
+        base = None
+
+    executables = [
+        Executable(
+            'main.py',
+            base=base,
+            icon="gui\skin\images\QFramer.ico",
+            targetName="QFramer.exe",
+            appendScriptToExe=False,
+            appendScriptToLibrary=True,
+        )
+    ]
 
     for key in ['build', 'dist']:
         path = os.sep.join([os.getcwd(), key])
