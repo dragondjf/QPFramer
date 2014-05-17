@@ -15,7 +15,50 @@ class QuickViwer(QtQuick.QQuickView):
     def __init__(self, parent=None):
         super(QuickViwer, self).__init__(parent)
         self.setResizeMode(self.SizeRootObjectToView)
-        self.setSource(QtCore.QUrl.fromLocalFile('gui/qml/tiger/tiger.qml'))
+        self.con = MyClass()
+        context = self.rootContext()
+        context.setContextProperty("myclass", self.con)
+        self.setSource(QtCore.QUrl.fromLocalFile('gui/qml/demo.qml'))
+        rootobj = self.rootObject()
+        rootobj.clicked.connect(self.on_qml_mouse_clicked)
+        rootobj.changeText('Do it well', 'green')
+
+    def on_qml_mouse_clicked(self):
+        print('mouse clicked')
+
+
+width = '''class QuickViwer(QtQuick.QQuickView):
+    """docstring for QuickViwer"""
+
+    def __init__(self, parent=None):
+        super(QuickViwer, self).__init__(parent)
+        self.setResizeMode(self.SizeRootObjectToView)
+        con = MyClass()
+        context = self.rootContext()
+        context.setContextProperty("myclass", width)
+        self.setSource(QtCore.QUrl.fromLocalFile('gui/qml/demo.qml'))
+        rootobj = self.rootObject()
+        rootobj.clicked.connect(self.on_qml_mouse_clicked)
+        rootobj.test()'''
+
+class MyClass(QtCore.QObject):
+
+    def __init__(self, parent=None):
+        super(MyClass, self).__init__(parent)
+        self._name = '545454545454'
+
+    @QtCore.pyqtProperty(str)
+    def name(self):
+        return self._name
+
+    @QtCore.pyqtSlot(int, result=str)
+    def returnValue(self, value):
+        """
+        功能: 创建一个槽
+        参数: 整数value
+        返回值: 字符串
+        """
+        return width
 
 
 class QmlViewer(QtWidgets.QFrame):

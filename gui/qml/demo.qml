@@ -5,6 +5,14 @@ Rectangle {
     width: 320; height: 480
     color: "lightgray"
 
+    signal clicked()
+
+    gradient: Gradient {
+        GradientStop { position: 0.0; color: "red" }
+        GradientStop { position: 0.33; color: "yellow" }
+        GradientStop { position: 1.0; color: "green" }
+    }
+
     Text {
         id: helloText
         text: "Hello world!"
@@ -14,7 +22,14 @@ Rectangle {
 
         MouseArea { 
             id: mouseArea; 
-            anchors.fill: parent }
+            anchors.fill: parent
+            onClicked: {
+                page.clicked();  // emit the parent's signal
+                console.log(myclass);
+                helloText.text = myclass.name;
+                helloText.text = myclass.returnValue(50);
+            }
+        }
 
         states: State {
             name: "down"; when: mouseArea.pressed == true
@@ -41,5 +56,15 @@ Rectangle {
         Cell { cellColor: "yellow"; onClicked: helloText.color = cellColor }
         Cell { cellColor: "steelblue"; onClicked: helloText.color = cellColor }
         Cell { cellColor: "black"; onClicked: helloText.color = cellColor }
+    }
+
+    function changeText(text, color){
+        helloText.text = text;
+        helloText.color = color;
+    }
+
+    function changeText1(){
+        helloText.text = text;
+        helloText.color = color;
     }
 }
