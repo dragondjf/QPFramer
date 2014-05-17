@@ -12,9 +12,12 @@ class MainWindow(QtQuick.QQuickView):
     """docstring for MainWindow"""
     def __init__(self):
         super(MainWindow, self).__init__()
-        self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
+        # self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
+        self.setResizeMode(QtQuick.QQuickView. SizeViewToRootObject)
+        self.setFlags(QtCore.Qt.FramelessWindowHint)
+
         self.statusChanged.connect(self.trackStatus)
-        self.setSource(QtCore.QUrl('application/photoviewer/photoviewer.qml'))
+        self.setSource(QtCore.QUrl('application/appquick.qml'))
 
     def trackStatus(self, status):
         if status == QtQuick.QQuickView.Null:
