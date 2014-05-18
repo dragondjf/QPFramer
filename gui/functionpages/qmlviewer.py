@@ -19,10 +19,10 @@ class QuickViwer(QtQuick.QQuickView):
         self.con = MyClass()
         context = self.rootContext()
         context.setContextProperty("myclass", self.con)
-        self.setSource(QtCore.QUrl.fromLocalFile('gui/qml/demo.qml'))
-        rootobj = self.rootObject()
-        rootobj.clicked.connect(self.on_qml_mouse_clicked)
-        rootobj.changeText('Do it well', 'green')
+        # self.setSource(QtCore.QUrl.fromLocalFile('gui/qml/demo.qml'))
+        # rootobj = self.rootObject()
+        # rootobj.clicked.connect(self.on_qml_mouse_clicked)
+        # rootobj.changeText('Do it well', 'green')
 
         self.statusChanged.connect(self.trackStatus)
 
@@ -87,6 +87,7 @@ class QmlViewer(QtWidgets.QFrame):
         self.creatContainer()
         self.initUI()
         self.initConnect()
+        self.urlLineEdit.setText("gui/qml/demo.qml")
 
     def creatContainer(self):
         self.view = QuickViwer()
