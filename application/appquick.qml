@@ -96,7 +96,7 @@ Rectangle{
         anchors.top: horizontalseparator.bottom
         startcolor: "green"
         middlecolor: "yellow"
-        stopcolor: "red"
+        stopcolor: "white"
         animationEnabled: false
     }
     focus: true
