@@ -4,8 +4,13 @@ import QtQuick.Layouts 1.0
 Rectangle{
     id: titlebar
 
-    property variant title
-    property variant isfullscreen
+    property string title
+    property bool isfullscreen
+    property bool skinIsVisible
+    property variant skinIcon
+    property variant skinHoverIcon
+    property variant dropdownmenuIcon
+    property variant dropdownmenuHoverIcon
     property variant minIcon
     property variant minHoverIcon
     property variant maxIcon
@@ -15,6 +20,7 @@ Rectangle{
     property variant closeIcon
     property variant closeHoverIcon
 
+    signal skinHovered()
     signal minClicked()
     signal maxClicked()
     signal closeClicked()
@@ -23,27 +29,97 @@ Rectangle{
     width: parent.width
     color: 'transparent'
 
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: false
+        onEntered: {}
+        onExited: {}
+        onWheel: {}
+        onClicked: {}
+        onDoubleClicked:{
+            titlebar.doubleClicked();
+        }
+    }
+
     RowLayout{
         anchors.fill: parent
+        anchors.margins: 0
         Text{
             id: text
             anchors.left: parent.left
             anchors.right: min.left
+            anchors.leftMargin: 10
+            color: "white"
+            font.bold: true
+            font.pointSize: 12
             height: parent.height
             text: titlebar.title
+        }
+
+        Rectangle{
+            id: skin
+            anchors.right: dropdownmenu.left
+            width: parent.height
+            height: parent.height
+            color: "transparent"
+
+            Image{
+                id: skinimage
+                anchors.fill: parent
+                source: titlebar.skinIcon
+            }
 
             MouseArea {
                 anchors.fill: parent
-                hoverEnabled: false
-                onEntered: {}
-                onExited: {}
+                hoverEnabled: true
+                onEntered: {
+                    parent.color="lightgreen";
+                    skinimage.source = titlebar.skinHoverIcon;
+                    titlebar.skinHovered();
+                }
+                onExited: {
+                    parent.color="transparent";
+                    skinimage.source = titlebar.skinIcon
+                }
                 onWheel: {}
-                onClicked: {}
-                onDoubleClicked:{
-                    titlebar.doubleClicked();
+                onClicked: {
+                    // titlebar.minClicked();
                 }
             }
         }
+
+        Rectangle{
+            id: dropdownmenu
+            anchors.right: min.left
+            width: parent.height
+            height: parent.height
+            color: "transparent"
+
+            Image{
+                id: dropdownmenuimage
+                anchors.fill: parent
+                source: titlebar.dropdownmenuIcon
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: {
+                    parent.color="lightgreen";
+                    dropdownmenuimage.source = titlebar.dropdownmenuHoverIcon
+                }
+                onExited: {
+                    parent.color="transparent";
+                    dropdownmenuimage.source = titlebar.dropdownmenuIcon
+                }
+                onWheel: {}
+                onClicked: {
+                    // titlebar.minClicked();
+                    // console.log('112122112');
+                }
+            }
+        }
+
 
         Rectangle{
             id: min
