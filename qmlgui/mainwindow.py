@@ -27,7 +27,6 @@ class MainWindow(QtQuick.QQuickView):
         self.rootobj = self.rootObject()
         self.rootobj.minClicked.connect(self.showMinimized)
         self.rootobj.maxClicked.connect(self.showWindow)
-        self.rootobj.doubleClicked.connect(self.showWindow)
 
     def trackStatus(self, status):
         if status == QtQuick.QQuickView.Null:
@@ -63,11 +62,12 @@ class MainWindow(QtQuick.QQuickView):
                 event.accept()
         super(MainWindow, self).mouseMoveEvent(event)
 
-    def keyPressEvent(self, event):
-        if event.key() == QtCore.Qt.Key_F11:
-            self.showWindow()
-        elif event.key() == QtCore.Qt.Key_Escape:
-            self.close()
+    # def keyPressEvent(self, event):
+    #     if event.key() == QtCore.Qt.Key_F11:
+    #         self.showWindow()
+
+    #     elif event.key() == QtCore.Qt.Key_Escape:
+    #         self.close()
 
     def showWindow(self):
         self.fullScreenFlag = not self.fullScreenFlag

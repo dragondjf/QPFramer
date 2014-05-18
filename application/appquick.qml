@@ -12,7 +12,6 @@ Rectangle{
     signal minClicked()
     signal maxClicked()
     signal closeClicked()
-    signal doubleClicked()
 
     width: Screen.desktopAvailableWidth * 0.8
     height:Screen.desktopAvailableHeight * 0.8
@@ -27,7 +26,7 @@ Rectangle{
             mainwindow.isfullscreen = false;
         }
         else{
-            mainwindow.isfullscreen = true;         
+            mainwindow.isfullscreen = true;
         }
     }
 
@@ -68,12 +67,17 @@ Rectangle{
         }
 
         onDoubleClicked:{
-            mainwindow.doubleClicked();
+            titlebar.maxClicked();
         }
 
         onSkinHovered:{
             skinbar.animationEnabled = true
-            skinbar.x = parent.width - skinbar.width
+            if(skinbar.x == parent.width){
+                
+                skinbar.x = parent.width - skinbar.width
+            }else{
+                skinbar.x = parent.width
+            }
         }
     }
 
@@ -95,4 +99,14 @@ Rectangle{
         stopcolor: "red"
         animationEnabled: false
     }
+    focus: true
+    Keys.onPressed: {
+        if (event.key == Qt.Key_F11){
+            mainwindow.maxClicked()
+        }
+    }
+    Keys.onEscapePressed:{
+        Qt.quit();
+    }
+
 }

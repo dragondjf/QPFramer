@@ -83,7 +83,11 @@ Rectangle{
         onClicked: {
             skinbar.clickedX = mouse.x;
             skinbar.clickedY = mouse.y;
-            colorDialog.open();
+            if(skinbar.clickedX < start.x || skinbar.clickedX > stop.x + stop.width){
+                skinbar.x = skinbar.parentWidth
+            }else{
+                colorDialog.open();                
+            }
             mouse.accepted = true;
         }
     }
