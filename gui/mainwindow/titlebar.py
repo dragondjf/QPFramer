@@ -98,10 +98,10 @@ class TitleBar(QtWidgets.QFrame):
         mainwindow = views['MainWindow']
         if mainwindow.isFullScreen():
             mainwindow.showNormal()
-            self.maxButton.setIcon(self.maxIcon)
+            self.maxButton.setIcon(self.normalIcon)
         else:
             mainwindow.showFullScreen()
-            self.maxButton.setIcon(self.normalIcon)
+            self.maxButton.setIcon(self.maxIcon)
 
     def actionClose(self):
         mainwindow = views['MainWindow']
