@@ -21,15 +21,6 @@ Rectangle{
         GradientStop {id: stop; position: 1.0; color: skinbar.stopcolor }
     }
 
-    function showWindow(){
-        if(mainwindow.isfullscreen == true){
-            mainwindow.isfullscreen = false;
-        }
-        else{
-            mainwindow.isfullscreen = true;
-        }
-    }
-
     TitleBar{
         id: titlebar
         title: mainconfig.title
@@ -56,7 +47,7 @@ Rectangle{
         }
 
         onMaxClicked:{
-            mainwindow.showWindow();
+            mainwindow.isfullscreen = !mainwindow.isfullscreen;
             mainwindow.maxClicked();
             skinbar.animationEnabled = false
             skinbar.x = parent.width
@@ -73,10 +64,11 @@ Rectangle{
         onSkinHovered:{
             skinbar.animationEnabled = true
             if(skinbar.x == parent.width){
-                
+                skinbar.opacity = 1
                 skinbar.x = parent.width - skinbar.width
             }else{
                 skinbar.x = parent.width
+                skinbar.opacity = 0
             }
         }
     }
@@ -84,7 +76,7 @@ Rectangle{
     HorizontalSeparator{
         id: horizontalseparator
         height: 0
-        color: "lightgreen"
+        color: "transparent"
         anchors.top: titlebar.bottom
     }
 
@@ -93,16 +85,89 @@ Rectangle{
         parentWidth: parent.width
         width: titlebar.height * 12
         height: titlebar.height
-        anchors.top: horizontalseparator.bottom
+        anchors.top: titlebar.bottom
         startcolor: "green"
         middlecolor: "yellow"
         stopcolor: "white"
         animationEnabled: false
+        opacity:0
+        z: 100
     }
+
+    CenterWindow{
+        id: centerwindow
+        width: parent.width
+        anchors.left: parent.left
+        anchors.top: horizontalseparator.bottom
+        anchors.right: parent.right
+        anchors.bottom: statusbar.top
+        // color: "transparent"
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: skinbar.startcolor }
+            GradientStop { position: 0.5; color: skinbar.middlecolor }
+            GradientStop { position: 1.0; color: skinbar.stopcolor }
+        }
+
+        SideBar{
+            id: leftsidebar
+            width: 200
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            color: "#154784"
+        }
+
+        SideBar{
+            id: rightsidebar
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: leftsidebar.right
+            anchors.right: parent.right
+            color: "#154784"
+        }
+
+        MouseArea {
+            id: centerwindowmouseArea
+            anchors.fill: parent
+            hoverEnabled: true
+            // propagateComposedEvents: true
+            onPositionChanged: {
+                if(mouse.x < 200){
+                    leftsidebar.opacity = 1;
+                }else{
+                    leftsidebar.opacity = 0;
+                }
+            }
+        }
+    }
+
+    StatusBar{
+        id:statusbar
+        height: 40
+        mainwindowwidth: parent.width
+        mainwindowheight: parent.height
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        color: "green"
+        // onSizegripChanged:{
+        //     var sizeIncrease = (x - statusbar.enterX > 0) && (y - statusbar.enterY > 0)
+        //     var sizeDecrease = (x - statusbar.enterX < 0) && (y - statusbar.enterY < 0)
+        //     if(sizeIncrease || sizeDecrease){
+        //         mainwindow.width =  mainwindow.width + x - statusbar.enterX;
+        //         mainwindow.height = mainwindow.height + y - statusbar.enterY;
+        //     }
+        // }
+    }
+
     focus: true
     Keys.onPressed: {
         if (event.key == Qt.Key_F11){
-            mainwindow.maxClicked()
+           mainwindow.isfullscreen = !mainwindow.isfullscreen;
+           mainwindow.maxClicked();
+        }
+        if (event.key == Qt.Key_F12){
+            rightsidebar.toggleshow()
         }
     }
     Keys.onEscapePressed:{

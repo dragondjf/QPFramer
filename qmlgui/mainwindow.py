@@ -12,7 +12,8 @@ class MainWindow(QtQuick.QQuickView):
     """docstring for MainWindow"""
     def __init__(self):
         super(MainWindow, self).__init__()
-        self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
+        self.setResizeMode(QtQuick.QQuickView.SizeViewToRootObject)
+        # self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
         self.fullScreenFlag = False
         self.setFlags(QtCore.Qt.Window | QtCore.Qt.FramelessWindowHint)
         self.setIcon(QtGui.QIcon('application/images/png/QFramer.png'))
@@ -57,6 +58,7 @@ class MainWindow(QtQuick.QQuickView):
         if hasattr(self, "dragPosition") and not self.fullScreenFlag:
             if event.buttons() == QtCore.Qt.LeftButton:
                 currentPos = event.globalPos() - self.dragPosition
+                # if event.pos().y() < self.height() - 40:
                 self.setX(currentPos.x())
                 self.setY(currentPos.y())
                 event.accept()
@@ -72,9 +74,11 @@ class MainWindow(QtQuick.QQuickView):
     def showWindow(self):
         self.fullScreenFlag = not self.fullScreenFlag
         if self.fullScreenFlag:
+            self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
             self.showFullScreen()
         else:
             self.showNormal()
+            self.setResizeMode(QtQuick.QQuickView.SizeViewToRootObject)
 
 
 class MainConfig(QtCore.QObject):

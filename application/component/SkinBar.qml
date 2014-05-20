@@ -74,6 +74,10 @@ Rectangle{
         enabled: skinbar.animationEnabled
         NumberAnimation { duration: 1000 }
     }
+    Behavior on opacity {
+        enabled: skinbar.animationEnabled
+        NumberAnimation { duration: 1000 }
+    }
 
     MouseArea {
         id: mousearea
