@@ -111,11 +111,13 @@ Rectangle{
 
         SideBar{
             id: leftsidebar
-            width: 200
+            // width: 200
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             color: "#154784"
+            opacity: 1
+            NumberAnimation on width { to: 200; duration: 1000}
         }
 
         SideBar{
@@ -125,6 +127,33 @@ Rectangle{
             anchors.left: leftsidebar.right
             anchors.right: parent.right
             color: "#154784"
+
+            function rightshow(){
+                if(rightsidebar.state == "primary_x"){
+                    rightsidebar.state = "right_x"
+                }else{
+                    rightsidebar.state = "primary_x"
+                }
+            }
+
+            state: "primary_x"
+
+            states: [
+                State {
+                    name: "primary_x"
+                    AnchorChanges { target: rightsidebar; anchors.left: leftsidebar.right }
+                },
+                State {
+                    name: "right_x"
+                    AnchorChanges { target: rightsidebar; anchors.left: parent.right }
+                }
+            ]
+
+            transitions: [
+                Transition {
+                    AnchorAnimation { duration: 1000 }
+                }
+            ]
         }
 
         MouseArea {
@@ -174,7 +203,24 @@ Rectangle{
         if (event.key == Qt.Key_F12){
             rightsidebar.toggleshow()
         }
+        if (event.key == Qt.Key_Up){
+            rightsidebar.toggleshow()
+        }
+        if (event.key == Qt.Key_Down){
+            rightsidebar.toggleshow()
+        }
+        if (event.key == Qt.Key_Left){
+            rightsidebar.toggleshow()
+        }
+        if (event.key == Qt.Key_Right){
+            rightsidebar.rightshow()
+        }
     }
+    Keys.onDigit0Pressed:{
+        console.log("2221");
+        rightsidebar.toggleshow();
+    }
+
     Keys.onEscapePressed:{
         Qt.quit();
     }

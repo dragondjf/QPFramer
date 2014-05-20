@@ -2,12 +2,13 @@ import QtQuick 2.0
 
 Rectangle {
     id: sidebar
+
     
     function toggleshow() {
-        if(rightsidebar.opacity == 0){
-            rightsidebar.opacity = 1;
+        if(sidebar.opacity == 0){
+            sidebar.opacity = 1;
         }else{
-            rightsidebar.opacity = 0;
+            sidebar.opacity = 0;
         }
     }
 
@@ -23,5 +24,5 @@ Rectangle {
         NumberAnimation { duration: 1000 }
     }
 
-
+    
 }
