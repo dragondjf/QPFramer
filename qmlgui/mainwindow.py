@@ -12,9 +12,12 @@ class MainWindow(QtQuick.QQuickView):
     """docstring for MainWindow"""
     def __init__(self):
         super(MainWindow, self).__init__()
-        self.setResizeMode(QtQuick.QQuickView.SizeViewToRootObject)
-        # self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
+        # self.setResizeMode(QtQuick.QQuickView.SizeViewToRootObject)
+        self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
+        self.screensize = self.screen().availableSize()
+
         self.fullScreenFlag = False
+        self.maxFlg = False
         self.setFlags(QtCore.Qt.Window | QtCore.Qt.FramelessWindowHint)
         self.setIcon(QtGui.QIcon('application/images/png/QFramer.png'))
         self.setTitle("QFramer")
@@ -28,6 +31,9 @@ class MainWindow(QtQuick.QQuickView):
         self.rootobj = self.rootObject()
         self.rootobj.minClicked.connect(self.showMinimized)
         self.rootobj.maxClicked.connect(self.showWindow)
+        self.rootobj.fullscreen.connect(self.fullscreen)
+
+        self.prefersize = self.size()
 
     def trackStatus(self, status):
         if status == QtQuick.QQuickView.Null:
@@ -55,7 +61,7 @@ class MainWindow(QtQuick.QQuickView):
 
     def mouseMoveEvent(self, event):
         # 鼠标移动事件
-        if hasattr(self, "dragPosition") and not self.fullScreenFlag:
+        if hasattr(self, "dragPosition") and not self.fullScreenFlag and not self.maxFlg:
             if event.buttons() == QtCore.Qt.LeftButton:
                 currentPos = event.globalPos() - self.dragPosition
                 # if event.pos().y() < self.height() - 40:
@@ -64,21 +70,32 @@ class MainWindow(QtQuick.QQuickView):
                 event.accept()
         super(MainWindow, self).mouseMoveEvent(event)
 
-    # def keyPressEvent(self, event):
-    #     if event.key() == QtCore.Qt.Key_F11:
-    #         self.showWindow()
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_F5:
+            print('121212')
+        super(MainWindow, self).keyPressEvent(event)
 
-    #     elif event.key() == QtCore.Qt.Key_Escape:
-    #         self.close()
-
-    def showWindow(self):
+    def fullscreen(self):
         self.fullScreenFlag = not self.fullScreenFlag
         if self.fullScreenFlag:
-            self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
             self.showFullScreen()
         else:
             self.showNormal()
-            self.setResizeMode(QtQuick.QQuickView.SizeViewToRootObject)
+
+    def showWindow(self):
+        self.maxFlg = not self.maxFlg
+        if self.maxFlg:
+            self.setGeometry(0, 0, self.screensize.width(), self.screensize.height())
+            self.resize(self.screen().availableSize())
+        else:
+            self.resize(self.prefersize)
+            self.moveCenter()
+
+    def moveCenter(self):
+        qr = self.frameGeometry()
+        cp = self.screen().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.setPosition(qr.topLeft())
 
 
 class MainConfig(QtCore.QObject):

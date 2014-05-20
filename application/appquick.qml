@@ -10,6 +10,7 @@ Rectangle{
     property bool isfullscreen: false
 
     signal minClicked()
+    signal fullscreen()
     signal maxClicked()
     signal closeClicked()
 
@@ -163,6 +164,10 @@ Rectangle{
     focus: true
     Keys.onPressed: {
         if (event.key == Qt.Key_F11){
+           mainwindow.isfullscreen = !mainwindow.isfullscreen;
+           mainwindow.fullscreen();
+        }
+        if (event.key == Qt.Key_F10){
            mainwindow.isfullscreen = !mainwindow.isfullscreen;
            mainwindow.maxClicked();
         }
