@@ -4,12 +4,13 @@ import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.0
 import "component"
 import "affectors"
-import "clocks"
+import "loading/loading.js" as Loading 
 
 Rectangle{
     id: mainwindow
 
     property bool isfullscreen: false
+    property var loadingcircles
 
     signal minClicked()
     signal fullscreen()
@@ -105,58 +106,46 @@ Rectangle{
         anchors.top: horizontalseparator.bottom
         anchors.right: parent.right
         anchors.bottom: statusbar.top
-        // color: "transparent"
         gradient: Gradient {
             GradientStop { position: 0.0; color: skinbar.startcolor }
             GradientStop { position: 0.5; color: skinbar.middlecolor }
             GradientStop { position: 1.0; color: skinbar.stopcolor }
         }
 
-        // MoveAffector{
-        //     // anchors.fill: parent
-        //     // anchors.centerIn: parent
-        //     anchors.verticalCenter: parent.verticalCenter
-        //     anchors.horizontalCenter: parent.horizontalCenter
-        // }
-
-       
-
         SideBar{
             id: leftsidebar
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
-            color: "#154784"
             opacity: 1
 
-            // Clocks{
-            //     anchors.fill: parent
-            // }
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: skinbar.stopcolor }
+                GradientStop { position: 0.5; color: skinbar.middlecolor }
+                GradientStop { position: 1.0; color: skinbar.startcolor }
+            }
+
             NumberAnimation on width { to: 200; duration: 1000}
 
-            MouseClick{
+            MouseArea {
                 anchors.fill: parent
-                color: "transparent"
-                z: 100
+                cursorShape: Qt.PointingHandCursor
+                hoverEnabled: false
+                propagateComposedEvents: true
+                onEntered: {}
+                onExited: {}
+                onWheel: {}
+                onClicked: {
+                    console.log('leftsidebar');
+                    mouse.accepted = false
+                }
             }
-            // MouseArea {
-            //     // id: centerwindowmouseArea
-            //     anchors.fill: parent
-            //     hoverEnabled: true
-            //     propagateComposedEvents: true
-
-            // }
         }
 
         SideBar{
             id: rightsidebar
             function stateshow(state){
-                if(rightsidebar.state == "primaryAnchors"){
-                    rightsidebar.state = state
-                }
-                else{
-                    rightsidebar.state = "primaryAnchors"
-                }
+                rightsidebar.state = rightsidebar.state == "primaryAnchors"? state: "primaryAnchors"
             }
 
             anchors.top: parent.top
@@ -166,19 +155,21 @@ Rectangle{
             gradient: Gradient {
                 GradientStop { position: 0.0; color: skinbar.stopcolor }
                 GradientStop { position: 0.5; color: skinbar.middlecolor }
-                GradientStop { position: 1.0; color: skinbar.stopcolor }
+                GradientStop { position: 1.0; color: skinbar.startcolor }
             }
             state: "primary"
 
             MouseArea {
                 anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
+                // cursorShape: Qt.PointingHandCursor
                 hoverEnabled: false
+                propagateComposedEvents: true
                 onEntered: {}
                 onExited: {}
                 onWheel: {}
                 onClicked: {
-                    console.log('5454454554');
+                    console.log('rightsidebar');
+                    mouse.accepted = false
                 }
             }
 
@@ -246,6 +237,14 @@ Rectangle{
                     leftsidebar.opacity = 0;
                 }
             }
+            onClicked:{
+                console.log('centerwindow')
+                mouse.accepted = false
+                mainwindow.loadingcircles = Loading.loadingfinish(mainwindow.loadingcircles)
+            }
+            onDoubleClicked:{
+                mainwindow.loadingcircles = Loading.loading(mainwindow);
+            }
         }
     }
 
@@ -259,12 +258,11 @@ Rectangle{
         anchors.bottom: parent.bottom
         color: "green"
         text: "Running"
-        MouseClick{
-            anchors.fill: parent
-            color: "transparent"
-        }
     }
-
+    MouseClick{
+        anchors.fill: parent
+        color: "transparent"
+    }
     focus: true
     Keys.onPressed: {
         if (event.key == Qt.Key_F11){
@@ -311,11 +309,4 @@ Rectangle{
     Keys.onEscapePressed:{
         Qt.quit();
     }
-
-    // OpacityAnimator on opacitY{
-    //     from: 0;
-    //     to: 1;
-    //     duration: 1000
-    // }
-
 }

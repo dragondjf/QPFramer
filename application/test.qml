@@ -1,18 +1,21 @@
 import QtQuick 2.0
+import "loading/loading.js" as Loading 
 
 Rectangle {
     id: page
-    width: 640; height: 480
-    color: "#343434"
-    
 
+    property var ls
+
+    width: 1000; height: 480
+    color: Qt.application.active ? "white" : "lightgray"
+    opacity: Qt.application.active ? 1.0 : 0
     Rectangle {
         id: topLeftRect
 
         function rightshow(){
             if(topLeftRect.state == "primary_x"){
                 topLeftRect.state = "right_x"
-                console.log('12121212')
+                console.log(Qt.platform.os)
             }else{
                 topLeftRect.state = "primary_x"
             }
@@ -51,7 +54,45 @@ Rectangle {
     ]
     }
 
-   
+    function loading(parent) {
+        var ls = [];
+        var component = Qt.createComponent("loading.qml");
+        for (var i=0; i<10; i++) {
+            var object = component.createObject(parent);
+            object.pwidth = parent.width + i * 10;
+            object.x = object.pwidth - i * 30;
+            ls[i] = object
+        }
+        return ls
+    }
 
-    
+    function loadingfinsih(ls){
+        for(var i=0, len=ls.length; i < len; i++){
+            if(ls[i] != undefined){
+                ls[i].destroy();
+            }
+        }
+        ls = []
+        return ls
+    }
+
+    Component.onCompleted: {
+        // page.ls = Loading.loading(page);
+        // console.log(page.ls)
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
+        hoverEnabled: false
+        onEntered: {}
+        onExited: {}
+        onWheel: {}
+        onClicked: {
+            page.ls = Loading.loadingfinsih(page.ls)
+        }
+        onDoubleClicked:{
+            page.ls = Loading.loading(page);
+        }
+    }
 }

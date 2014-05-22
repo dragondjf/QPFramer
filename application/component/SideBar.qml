@@ -17,7 +17,9 @@ Rectangle {
     onOpacityChanged:{
         if(sidebar.opacity == 0){
             sidebar.enabled = false;
-        }
+        }else if (sidebar.opacity == 1){
+            sidebar.enabled = true;
+        }   
     }
 
     Behavior on opacity {
