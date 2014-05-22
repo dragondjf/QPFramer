@@ -4,7 +4,7 @@ import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.0
 import "component"
 import "affectors"
-import "loading/loading.js" as Loading 
+import "Loading" 
 
 Rectangle{
     id: mainwindow

@@ -16,7 +16,9 @@ function loadingfinish(ls){
     if(ls){
         for(var i=0, len=ls.length; i < len; i++){
             if(ls[i]){
-                ls[i].destroy();
+                if(ls[i].hasOwnProperty('destroy')){
+                    ls[i].destroy();
+                }
             }
         }
     }

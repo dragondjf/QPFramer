@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import os.path
+import os
 from PyQt5 import QtCore
 from PyQt5 import QtGui
 from PyQt5 import QtQuick
@@ -15,6 +15,8 @@ class MainWindow(QtQuick.QQuickView):
         # self.setResizeMode(QtQuick.QQuickView.SizeViewToRootObject)
         self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
         self.screensize = self.screen().availableSize()
+
+        self.engine().addImportPath(os.sep.join([os.getcwd(), 'qml']))
 
         self.fullScreenFlag = False
         self.maxFlg = False

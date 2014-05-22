@@ -53,10 +53,13 @@ if __name__ == '__main__':
         shutil.copytree(os.sep.join([os.getcwd(), item]), os.sep.join([build_path, item]))
 
     for item in ['qml']:
-        copytree(os.sep.join([path_pyqt5, item]), os.sep.join([build_path]))
+        shutil.copytree(os.sep.join([path_pyqt5, item]), os.sep.join([build_path, item]))
+
+    # for item in ['qml']:
+    #     copytree(os.sep.join([path_pyqt5, item]), os.sep.join([build_path]))
 
     for item in ['msvcp100.dll']:
         shutil.copyfile(os.sep.join([os.getcwd(), 'dll', item]), os.sep.join([build_path, item]))
 
-    for item in ['libEGL.dll']:
+    for item in ['libEGL.dll','Qt5QuickParticles.dll']:
         shutil.copyfile(os.sep.join([path_pyqt5, item]), os.sep.join([build_path, item]))
