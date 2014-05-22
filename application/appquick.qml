@@ -3,6 +3,8 @@ import QtQuick.Window 2.1
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.0
 import "component"
+import "affectors"
+import "clocks"
 
 Rectangle{
     id: mainwindow
@@ -94,6 +96,7 @@ Rectangle{
         opacity:0
         z: 100
     }
+    
 
     CenterWindow{
         id: centerwindow
@@ -109,43 +112,118 @@ Rectangle{
             GradientStop { position: 1.0; color: skinbar.stopcolor }
         }
 
+        // MoveAffector{
+        //     // anchors.fill: parent
+        //     // anchors.centerIn: parent
+        //     anchors.verticalCenter: parent.verticalCenter
+        //     anchors.horizontalCenter: parent.horizontalCenter
+        // }
+
+       
+
         SideBar{
             id: leftsidebar
-            // width: 200
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             color: "#154784"
             opacity: 1
+
+            // Clocks{
+            //     anchors.fill: parent
+            // }
             NumberAnimation on width { to: 200; duration: 1000}
+
+            MouseClick{
+                anchors.fill: parent
+                color: "transparent"
+                z: 100
+            }
+            // MouseArea {
+            //     // id: centerwindowmouseArea
+            //     anchors.fill: parent
+            //     hoverEnabled: true
+            //     propagateComposedEvents: true
+
+            // }
         }
 
         SideBar{
             id: rightsidebar
+            function stateshow(state){
+                if(rightsidebar.state == "primaryAnchors"){
+                    rightsidebar.state = state
+                }
+                else{
+                    rightsidebar.state = "primaryAnchors"
+                }
+            }
+
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: leftsidebar.right
             anchors.right: parent.right
-            color: "#154784"
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: skinbar.stopcolor }
+                GradientStop { position: 0.5; color: skinbar.middlecolor }
+                GradientStop { position: 1.0; color: skinbar.stopcolor }
+            }
+            state: "primary"
 
-            function rightshow(){
-                if(rightsidebar.state == "primary_x"){
-                    rightsidebar.state = "right_x"
-                }else{
-                    rightsidebar.state = "primary_x"
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                hoverEnabled: false
+                onEntered: {}
+                onExited: {}
+                onWheel: {}
+                onClicked: {
+                    console.log('5454454554');
                 }
             }
 
-            state: "primary_x"
-
             states: [
                 State {
-                    name: "primary_x"
-                    AnchorChanges { target: rightsidebar; anchors.left: leftsidebar.right }
+                    name: "primary"
+                    AnchorChanges { 
+                        target: rightsidebar
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        anchors.left: leftsidebar.right
+                        anchors.right: parent.right
+                    }
                 },
                 State {
-                    name: "right_x"
+                    name: "right"
                     AnchorChanges { target: rightsidebar; anchors.left: parent.right }
+                },
+                State {
+                    name: "left"
+                    AnchorChanges { target: rightsidebar; anchors.right: leftsidebar.right }
+                },
+                State {
+                    name: "top"
+                    AnchorChanges { target: rightsidebar; anchors.bottom: parent.top }
+                },
+                State {
+                    name: "bottom"
+                    AnchorChanges { target: rightsidebar; anchors.top: parent.bottom }
+                },
+                State {
+                    name: "topleft"
+                    AnchorChanges { target: rightsidebar; anchors.bottom: parent.top; anchors.right: leftsidebar.right }
+                },
+                State {
+                    name: "topright"
+                    AnchorChanges { target: rightsidebar; anchors.bottom: parent.top; anchors.left: parent.right }
+                },
+                State {
+                    name: "bottomleft"
+                    AnchorChanges { target: rightsidebar; anchors.top: parent.bottom; anchors.right: leftsidebar.right}
+                },
+                State {
+                    name: "bottomright"
+                    AnchorChanges { target: rightsidebar; anchors.top: parent.bottom; anchors.left: parent.right}
                 }
             ]
 
@@ -160,7 +238,7 @@ Rectangle{
             id: centerwindowmouseArea
             anchors.fill: parent
             hoverEnabled: true
-            // propagateComposedEvents: true
+            propagateComposedEvents: true
             onPositionChanged: {
                 if(mouse.x < 200){
                     leftsidebar.opacity = 1;
@@ -180,14 +258,11 @@ Rectangle{
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         color: "green"
-        // onSizegripChanged:{
-        //     var sizeIncrease = (x - statusbar.enterX > 0) && (y - statusbar.enterY > 0)
-        //     var sizeDecrease = (x - statusbar.enterX < 0) && (y - statusbar.enterY < 0)
-        //     if(sizeIncrease || sizeDecrease){
-        //         mainwindow.width =  mainwindow.width + x - statusbar.enterX;
-        //         mainwindow.height = mainwindow.height + y - statusbar.enterY;
-        //     }
-        // }
+        text: "Running"
+        MouseClick{
+            anchors.fill: parent
+            color: "transparent"
+        }
     }
 
     focus: true
@@ -201,19 +276,31 @@ Rectangle{
            mainwindow.maxClicked();
         }
         if (event.key == Qt.Key_F12){
-            rightsidebar.toggleshow()
+            rightsidebar.toggleshow();
         }
-        if (event.key == Qt.Key_Up){
-            rightsidebar.toggleshow()
+        else if (event.key == Qt.Key_Up && (event.modifiers&Qt.ShiftModifier)){
+            rightsidebar.stateshow('top');
         }
-        if (event.key == Qt.Key_Down){
-            rightsidebar.toggleshow()
+        else if (event.key == Qt.Key_Down && (event.modifiers&Qt.ShiftModifier)){
+            rightsidebar.stateshow('bottom');
         }
-        if (event.key == Qt.Key_Left){
-            rightsidebar.toggleshow()
+        else if (event.key == Qt.Key_Left && (event.modifiers&Qt.ShiftModifier)){
+            rightsidebar.stateshow('left');
         }
-        if (event.key == Qt.Key_Right){
-            rightsidebar.rightshow()
+        else if (event.key == Qt.Key_Right && (event.modifiers&Qt.ShiftModifier)){
+            rightsidebar.stateshow('right');
+        }
+        else if (event.key == Qt.Key_Up && (event.modifiers&Qt.ControlModifier)){
+            rightsidebar.stateshow('topleft');
+        }
+        else if (event.key == Qt.Key_Down && (event.modifiers&Qt.ControlModifier)){
+            rightsidebar.stateshow('topright');
+        }
+        else if (event.key == Qt.Key_Left && (event.modifiers&Qt.ControlModifier)){
+            rightsidebar.stateshow('bottomleft');
+        }
+        else if (event.key == Qt.Key_Right && (event.modifiers&Qt.ControlModifier)){
+            rightsidebar.stateshow('bottomright');
         }
     }
     Keys.onDigit0Pressed:{
@@ -224,5 +311,11 @@ Rectangle{
     Keys.onEscapePressed:{
         Qt.quit();
     }
+
+    // OpacityAnimator on opacitY{
+    //     from: 0;
+    //     to: 1;
+    //     duration: 1000
+    // }
 
 }

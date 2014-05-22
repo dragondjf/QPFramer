@@ -24,5 +24,4 @@ Rectangle {
         NumberAnimation { duration: 1000 }
     }
 
-    
 }

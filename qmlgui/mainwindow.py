@@ -64,10 +64,10 @@ class MainWindow(QtQuick.QQuickView):
         if hasattr(self, "dragPosition") and not self.fullScreenFlag and not self.maxFlg:
             if event.buttons() == QtCore.Qt.LeftButton:
                 currentPos = event.globalPos() - self.dragPosition
-                # if event.pos().y() < self.height() - 40:
-                self.setX(currentPos.x())
-                self.setY(currentPos.y())
-                event.accept()
+                if event.pos().y() < 40:
+                    self.setX(currentPos.x())
+                    self.setY(currentPos.y())
+                    event.accept()
         super(MainWindow, self).mouseMoveEvent(event)
 
     def keyPressEvent(self, event):
