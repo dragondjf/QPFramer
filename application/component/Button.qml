@@ -13,7 +13,7 @@ Flipable {
 
     front: Rectangle{
         anchors.fill: parent
-        color: button.color
+        color: mousearea.pressed? 'lightgreen': 'green'
 
         MouseArea{
             propagateComposedEvents: true
@@ -32,7 +32,7 @@ Flipable {
     }
     back: Rectangle{
         anchors.fill: parent
-        color: button.color
+        color: mousearea.pressed? 'lightgreen': 'green'
 
         MouseArea{
             propagateComposedEvents: true
@@ -50,6 +50,7 @@ Flipable {
     }
 
     MouseArea {
+        id: mousearea
         anchors.fill: parent
         hoverEnabled: true
         propagateComposedEvents: true
@@ -58,16 +59,6 @@ Flipable {
         }
         onExited: {
             parent.state = 'back'
-        }
-        onPressed:{
-            button.front.color = "lightgreen"
-            button.back.color = "lightgreen"
-            mouse.accepted = true
-        }
-        onReleased:{
-            button.front.color = "green"
-            button.back.color = "green"
-            mouse.accepted = true
         }
         onClicked:{
             button.clicked(mouse.mouseX, mouse.mouseY);
