@@ -4,7 +4,7 @@ Flipable {
     id: button
 
     property string text: '545454'
-    property string color: 'green'
+    property string color: 'darkgreen'
 
     signal clicked(int x, int y)
 
@@ -13,15 +13,7 @@ Flipable {
 
     front: Rectangle{
         anchors.fill: parent
-        color: mousearea.pressed? 'lightgreen': 'green'
-
-        MouseArea{
-            propagateComposedEvents: true
-            onClicked: {
-                console.log('front clicked')
-                mouse.accepted = false
-            }
-        }
+        color: mousearea.pressed? 'darkgreen': 'green'
 
         Text{
             text: button.text
@@ -32,14 +24,7 @@ Flipable {
     }
     back: Rectangle{
         anchors.fill: parent
-        color: mousearea.pressed? 'lightgreen': 'green'
-
-        MouseArea{
-            propagateComposedEvents: true
-            onClicked: {
-                mouse.accepted = false
-            }
-        }
+        color: mousearea.pressed? 'darkgreen': 'green'
 
         Text{
             text: button.text
@@ -56,10 +41,21 @@ Flipable {
         propagateComposedEvents: true
         onEntered: {
             parent.state = 'font'
+            parent.front.color = 'darkgreen'
+            parent.back.color = 'darkgreen'
+
         }
         onExited: {
             parent.state = 'back'
+            parent.front.color = 'green'
+            parent.back.color = 'green'
         }
+
+        onPressed:{
+            parent.front.color = 'lightgreen'
+            parent.back.color = 'lightgreen'
+        }
+
         onClicked:{
             button.clicked(mouse.mouseX, mouse.mouseY);
             mouse.accepted = true

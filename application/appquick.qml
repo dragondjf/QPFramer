@@ -145,7 +145,7 @@ Rectangle{
             gradient: Gradient {
                 GradientStop { position: 0.0; color: skinbar.stopcolor }
                 GradientStop { position: 0.5; color: skinbar.middlecolor }
-                GradientStop { position: 1.0; color: skinbar.startcolor }
+                GradientStop { position: 1.0; color: 'darkgreen' }
             }
 
             Text{
@@ -178,6 +178,7 @@ Rectangle{
                     text: 'Cancel'
                     onClicked:{
                         console.log('Cancel')
+                        leftsidebar.toggleshow()
                     }
                 }
             }
@@ -198,7 +199,7 @@ Rectangle{
             gradient: Gradient {
                 GradientStop { position: 0.0; color: skinbar.stopcolor }
                 GradientStop { position: 0.5; color: skinbar.middlecolor }
-                GradientStop { position: 1.0; color: skinbar.startcolor }
+                GradientStop { position: 1.0; color: 'darkgreen' }
             }
             state: "primary"
 
@@ -210,6 +211,30 @@ Rectangle{
             MouseClick{
                 anchors.fill: parent
                 color: "transparent"
+            }
+
+            Row {
+                spacing: 5
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+                anchors.margins: 10
+                Button{
+                    id: rightsidebar_ok
+                    text: 'Ok'
+                    onClicked:{
+                        console.log('Ok')
+                        rightsidebar.stateshow('bottomright');
+                    }
+                }
+                Button{
+                    id: rightsidebar_cancel
+                    
+                    text: 'Cancel'
+                    onClicked:{
+                        console.log('Cancel')
+                        rightsidebar.stateshow('bottomright');
+                    }
+                }
             }
 
             states: [
@@ -226,6 +251,7 @@ Rectangle{
                 State {
                     name: "right"
                     AnchorChanges { target: rightsidebar; anchors.left: parent.right }
+                    PropertyChanges { target: rightsidebar; opacity: 0 }
                 },
                 State {
                     name: "left"
@@ -235,26 +261,32 @@ Rectangle{
                 State {
                     name: "top"
                     AnchorChanges { target: rightsidebar; anchors.bottom: parent.top }
+                    PropertyChanges { target: rightsidebar; opacity: 0 }
                 },
                 State {
                     name: "bottom"
                     AnchorChanges { target: rightsidebar; anchors.top: parent.bottom }
+                    PropertyChanges { target: rightsidebar; opacity: 0 }
                 },
                 State {
                     name: "topleft"
                     AnchorChanges { target: rightsidebar; anchors.bottom: parent.top; anchors.right: leftsidebar.right }
+                    PropertyChanges { target: rightsidebar; opacity: 0 }
                 },
                 State {
                     name: "topright"
                     AnchorChanges { target: rightsidebar; anchors.bottom: parent.top; anchors.left: parent.right }
+                    PropertyChanges { target: rightsidebar; opacity: 0 }
                 },
                 State {
                     name: "bottomleft"
                     AnchorChanges { target: rightsidebar; anchors.top: parent.bottom; anchors.right: leftsidebar.right}
+                    PropertyChanges { target: rightsidebar; opacity: 0 }
                 },
                 State {
                     name: "bottomright"
                     AnchorChanges { target: rightsidebar; anchors.top: parent.bottom; anchors.left: parent.right}
+                    PropertyChanges { target: rightsidebar; opacity: 0 }
                 }
             ]
 
@@ -263,7 +295,7 @@ Rectangle{
                     AnchorAnimation { duration: 1000 }
                 },
                 Transition {
-                    from: "primary"; to: "left"
+                    from: "primary"; to: "*"
                     PropertyAnimation { property: "opacity"; to:0; easing.type: Easing.OutBounce; duration: 1000 }
                 }
             ]
@@ -298,6 +330,8 @@ Rectangle{
         }
         if (event.key == Qt.Key_F12){
             rightsidebar.toggleshow();
+            // console.log(rightsidebar.opacity)
+             rightsidebar.stateshow('primary');
         }
         else if (event.key == Qt.Key_Up && (event.modifiers&Qt.ShiftModifier)){
             rightsidebar.stateshow('top');

@@ -1,76 +1,34 @@
 import QtQuick 2.0
 
-Flipable {
-    id: button
+Item {
+    width: 200; height: 200
 
-    property string text: '545454'
+    DropArea {
+        x: 75; y: 75
+        width: 50; height: 50
 
-    signal clicked(int x, int y)
+        Rectangle {
+            anchors.fill: parent
+            color: "green"
 
-    width: 120
-    height: 120
-
-    front: Rectangle{
-        anchors.fill: parent
-        color: "green"
-        Text{
-            text: button.text
-            anchors.centerIn: parent
-        }
-    }
-    back: Rectangle{
-        anchors.fill: parent
-        color: "green"
-        Text{
-            text: button.text
-            anchors.centerIn: parent
+            visible: parent.containsDrag
         }
     }
 
-    transform: Rotation {
-        id: rotation
-        origin.x: button.width/2
-        origin.y: button.height/2
-        axis.x: 1; axis.y: 0; axis.z: 0     // set axis.y to 1 to rotate around y-axis
-        angle: 0    // the default angle
-    }
+    Rectangle {
+        x: 10; y: 10
+        width: 20; height: 20
+        color: "red"
 
-    states: [
-        State {
-            name: "font"
-            PropertyChanges { target: rotation; angle: 180 }
-        },
-        State {
-            name: "back"
-            PropertyChanges { target: rotation; angle: 0 }
-        }
-    ]
+        Drag.active: dragArea.drag.active
+        Drag.hotSpot.x: 10
+        Drag.hotSpot.y: 10
 
-    transitions: Transition {
-        NumberAnimation { target: rotation; property: "angle"; duration: 800 }
-    }
+        MouseArea {
+            id: dragArea
+            anchors.fill: parent
 
-    MouseArea {
-        anchors.fill: parent
-        hoverEnabled: true
-        onEntered: {
-            button.state = 'font'
+            drag.target: parent
         }
-        onExited: {
-            button.state = 'back'
-        }
-
-        onPressed:{
-            console.log('onPressed')
-        }
-        onReleased:{
-            // button.front.color = "green"
-            console.log('onReleased')
-        }
-
-        onClicked:{
-            console.log('onClicked')
-            button.clicked(mouse.mouseX, mouse.mouseY);
-        } 
     }
 }
