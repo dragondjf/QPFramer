@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Window 2.1
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.0
+import QtWebKit 3.0
 import "component"
 import "affectors"
 import "Loading" 
@@ -203,11 +204,33 @@ Rectangle{
             }
             state: "primary"
 
-            Text{
-                text: 'rightsidebar'
-                anchors.centerIn: parent
-            }
+            // Text{
+            //     text: 'rightsidebar'
+            //     anchors.centerIn: parent
+            // }
 
+            WebView {
+            id: webView
+            anchors.fill: parent
+            url:"http://www.baidu.com"
+            // canGoBack: true
+            // canGoForward: true
+            objectName: "myWebView"
+
+            onLoadingChanged: {
+                console.log("onLoadingChanged: status=" + loadRequest.status);
+                if (loadRequest.status == WebView.LoadStartedStatus) 
+                    console.log("Loading started...");
+                if (loadRequest.status == WebView.LoadFailedStatus) {
+                   console.log("Load failed! Error code: " + loadRequest.errorCode);
+                   if (loadRequest.errorCode === NetworkReply.OperationCanceledError)
+                       console.log("Load cancelled by user");
+                } 
+                if (loadRequest.status == WebView.LoadSucceededStatus) 
+                    console.log("Page loaded!");
+            }
+        }
+            
             MouseClick{
                 anchors.fill: parent
                 color: "transparent"
@@ -310,12 +333,28 @@ Rectangle{
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        anchors.margins: 0
         color: "green"
         text: "Running"
         MouseClick{
             anchors.fill: parent
             color: "transparent"
         }
+
+        // ProgressBar {
+        //     id:progressbar
+        //     property int duration: 4000
+        //     height: 5
+        //     // anchors.fill: parent
+        //     anchors.margins: 0
+        //     width: parent.width
+        //     anchors.left: parent.left
+        //     anchors.right: parent.right
+        //     anchors.bottom: parent.bottom
+        //     color: 'black'
+
+        //     NumberAnimation on value { duration: progressbar.duration; from: 0; to: 100; loops: 1 }
+        // }
     }
 
     focus: true
