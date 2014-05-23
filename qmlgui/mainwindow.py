@@ -26,16 +26,19 @@ class MainWindow(QtQuick.QQuickView):
 
         context = self.rootContext()
         context.setContextProperty("mainconfig", MainConfig(self))
-
         self.statusChanged.connect(self.trackStatus)
-        self.setSource(QtCore.QUrl('application/appquick.qml'))
 
+        self.engine().quit.connect(QtGui.QGuiApplication.instance().quit)
+        
+    def loadMainWindow(self):
+        # self.setResizeMode(QtQuick.QQuickView.SizeRootObjectToView)
+        self.setSource(QtCore.QUrl('application/appquick.qml'))
         self.rootobj = self.rootObject()
         self.rootobj.minClicked.connect(self.showMinimized)
         self.rootobj.maxClicked.connect(self.showWindow)
         self.rootobj.fullscreen.connect(self.fullscreen)
-
         self.prefersize = self.size()
+        self.show()
 
     def trackStatus(self, status):
         if status == QtQuick.QQuickView.Null:

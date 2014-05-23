@@ -5,13 +5,12 @@ import sys
 import os
 from PyQt5 import QtCore
 from PyQt5 import QtGui
-from qmlgui import MainWindow
+from PyQt5 import QtQuick
+from qmlgui import MainWindow, SplashWindow
 
 if __name__ == '__main__':
     app = QtGui.QGuiApplication(sys.argv)
 
     main = MainWindow()
-    main.engine().quit.connect(app.quit)
-    main.show()
-
+    splashwindow = SplashWindow(main)
     sys.exit(app.exec_())
