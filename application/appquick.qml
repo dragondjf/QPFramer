@@ -230,6 +230,7 @@ Rectangle{
                 State {
                     name: "left"
                     AnchorChanges { target: rightsidebar; anchors.right: leftsidebar.right }
+                    PropertyChanges { target: rightsidebar; opacity: 0 }
                 },
                 State {
                     name: "top"
@@ -260,6 +261,10 @@ Rectangle{
             transitions: [
                 Transition {
                     AnchorAnimation { duration: 1000 }
+                },
+                Transition {
+                    from: "primary"; to: "left"
+                    PropertyAnimation { property: "opacity"; to:0; easing.type: Easing.OutBounce; duration: 1000 }
                 }
             ]
         }
