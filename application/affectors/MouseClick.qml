@@ -35,6 +35,11 @@ Rectangle {
             propagateComposedEvents: true
             onPressed: {
                 sys.resume()
+                mouse.accepted = true
+                console.log('Particles pressed')
+            }
+            onClicked:{
+                mouse.accepted = false
             }
             id: ma
         }

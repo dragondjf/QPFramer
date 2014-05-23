@@ -1,98 +1,76 @@
 import QtQuick 2.0
-import "loading/loading.js" as Loading 
 
-Rectangle {
-    id: page
+Flipable {
+    id: button
 
-    property var ls
+    property string text: '545454'
 
-    width: 1000; height: 480
-    color: Qt.application.active ? "white" : "lightgray"
-    opacity: Qt.application.active ? 1.0 : 0
-    Rectangle {
-        id: topLeftRect
+    signal clicked(int x, int y)
 
-        function rightshow(){
-            if(topLeftRect.state == "primary_x"){
-                topLeftRect.state = "right_x"
-                console.log(Qt.platform.os)
-            }else{
-                topLeftRect.state = "primary_x"
-            }
+    width: 120
+    height: 120
+
+    front: Rectangle{
+        anchors.fill: parent
+        color: "green"
+        Text{
+            text: button.text
+            anchors.centerIn: parent
         }
+    }
+    back: Rectangle{
+        anchors.fill: parent
+        color: "green"
+        Text{
+            text: button.text
+            anchors.centerIn: parent
+        }
+    }
 
-        anchors { left: parent.left; top: parent.top; leftMargin: 10; topMargin: 20 }
-        width: 46; height: 54
-        color: "Transparent"; border.color: "Gray"; radius: 6
-        state: "primary_x"
-        // Clicking in here sets the state to the default state, returning the image to
-        // its initial position
-        MouseArea { anchors.fill: parent; onClicked: topLeftRect.rightshow() }
+    transform: Rotation {
+        id: rotation
+        origin.x: button.width/2
+        origin.y: button.height/2
+        axis.x: 1; axis.y: 0; axis.z: 0     // set axis.y to 1 to rotate around y-axis
+        angle: 0    // the default angle
+    }
 
-        states: [
+    states: [
         State {
-            name: "primary_x"
-            PropertyChanges { target: topLeftRect; x: 200 }
+            name: "font"
+            PropertyChanges { target: rotation; angle: 180 }
         },
         State {
-            name: "right_x"
-            PropertyChanges { target: topLeftRect; x: 400}
+            name: "back"
+            PropertyChanges { target: rotation; angle: 0 }
         }
     ]
 
-    transitions: [
-        Transition {
-            from: "primary_x"
-            to: "right_x"
-            NumberAnimation { target: topLeftRect; property: "x"; duration: 1000}
-        },
-        Transition {
-            from: "right_x"
-            to: "primary_x"
-            NumberAnimation { target: topLeftRect; property: "x"; duration: 1000}
-        }
-    ]
-    }
-
-    function loading(parent) {
-        var ls = [];
-        var component = Qt.createComponent("loading.qml");
-        for (var i=0; i<10; i++) {
-            var object = component.createObject(parent);
-            object.pwidth = parent.width + i * 10;
-            object.x = object.pwidth - i * 30;
-            ls[i] = object
-        }
-        return ls
-    }
-
-    function loadingfinsih(ls){
-        for(var i=0, len=ls.length; i < len; i++){
-            if(ls[i] != undefined){
-                ls[i].destroy();
-            }
-        }
-        ls = []
-        return ls
-    }
-
-    Component.onCompleted: {
-        // page.ls = Loading.loading(page);
-        // console.log(page.ls)
+    transitions: Transition {
+        NumberAnimation { target: rotation; property: "angle"; duration: 800 }
     }
 
     MouseArea {
         anchors.fill: parent
-        cursorShape: Qt.PointingHandCursor
-        hoverEnabled: false
-        onEntered: {}
-        onExited: {}
-        onWheel: {}
-        onClicked: {
-            page.ls = Loading.loadingfinsih(page.ls)
+        hoverEnabled: true
+        onEntered: {
+            button.state = 'font'
         }
-        onDoubleClicked:{
-            page.ls = Loading.loading(page);
+        onExited: {
+            button.state = 'back'
         }
+
+        onPressed:{
+            console.log('onPressed')
+        }
+        onReleased:{
+            // button.front.color = "green"
+            console.log('onReleased')
+        }
+
+        onClicked:{
+            console.log('onClicked')
+            button.clicked(mouse.mouseX, mouse.mouseY);
+        } 
     }
 }

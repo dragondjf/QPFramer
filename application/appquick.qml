@@ -46,6 +46,11 @@ Rectangle{
         closeIcon: "../images/icons/dark/appbar.close.png"
         closeHoverIcon: "../images/icons/light/appbar.close.png"
 
+        MouseClick{
+            anchors.fill: parent
+            color: "transparent"
+        }
+
         onMinClicked:{
             mainwindow.minClicked()
         }
@@ -97,7 +102,6 @@ Rectangle{
         opacity:0
         z: 100
     }
-    
 
     CenterWindow{
         id: centerwindow
@@ -110,6 +114,25 @@ Rectangle{
             GradientStop { position: 0.0; color: skinbar.startcolor }
             GradientStop { position: 0.5; color: skinbar.middlecolor }
             GradientStop { position: 1.0; color: skinbar.stopcolor }
+        }
+
+        MouseArea {
+            id: centerwindowmouseArea
+            anchors.fill: parent
+            hoverEnabled: true
+            propagateComposedEvents: true
+            onPositionChanged: {
+                if(mouse.x < 200){
+                    leftsidebar.opacity = 1;
+                }else{
+                    leftsidebar.opacity = 0;
+                }
+            }
+        }
+
+        Text{
+            text: 'CenterWindow'
+            anchors.centerIn: parent
         }
 
         SideBar{
@@ -125,21 +148,40 @@ Rectangle{
                 GradientStop { position: 1.0; color: skinbar.startcolor }
             }
 
+            Text{
+                text: 'leftsidebar'
+                anchors.centerIn: parent
+            }
+
             NumberAnimation on width { to: 200; duration: 1000}
 
-            MouseArea {
+            MouseClick{
                 anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
-                hoverEnabled: false
-                propagateComposedEvents: true
-                onEntered: {}
-                onExited: {}
-                onWheel: {}
-                onClicked: {
-                    console.log('leftsidebar');
-                    mouse.accepted = false
+                color: "transparent"
+            }
+
+            Row {
+                spacing: 5
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+                anchors.margins: 10
+                Button{
+                    id: ok
+                    text: 'Ok'
+                    onClicked:{
+                        console.log('Ok')
+                    }
+                }
+                Button{
+                    id: cancel
+                    
+                    text: 'Cancel'
+                    onClicked:{
+                        console.log('Cancel')
+                    }
                 }
             }
+
         }
 
         SideBar{
@@ -152,6 +194,7 @@ Rectangle{
             anchors.bottom: parent.bottom
             anchors.left: leftsidebar.right
             anchors.right: parent.right
+            enabled: false
             gradient: Gradient {
                 GradientStop { position: 0.0; color: skinbar.stopcolor }
                 GradientStop { position: 0.5; color: skinbar.middlecolor }
@@ -159,18 +202,14 @@ Rectangle{
             }
             state: "primary"
 
-            MouseArea {
+            Text{
+                text: 'rightsidebar'
+                anchors.centerIn: parent
+            }
+
+            MouseClick{
                 anchors.fill: parent
-                // cursorShape: Qt.PointingHandCursor
-                hoverEnabled: false
-                propagateComposedEvents: true
-                onEntered: {}
-                onExited: {}
-                onWheel: {}
-                onClicked: {
-                    console.log('rightsidebar');
-                    mouse.accepted = false
-                }
+                color: "transparent"
             }
 
             states: [
@@ -224,28 +263,6 @@ Rectangle{
                 }
             ]
         }
-
-        MouseArea {
-            id: centerwindowmouseArea
-            anchors.fill: parent
-            hoverEnabled: true
-            propagateComposedEvents: true
-            onPositionChanged: {
-                if(mouse.x < 200){
-                    leftsidebar.opacity = 1;
-                }else{
-                    leftsidebar.opacity = 0;
-                }
-            }
-            onClicked:{
-                console.log('centerwindow')
-                mouse.accepted = false
-                mainwindow.loadingcircles = Loading.loadingfinish(mainwindow.loadingcircles)
-            }
-            onDoubleClicked:{
-                mainwindow.loadingcircles = Loading.loading(mainwindow);
-            }
-        }
     }
 
     StatusBar{
@@ -258,11 +275,12 @@ Rectangle{
         anchors.bottom: parent.bottom
         color: "green"
         text: "Running"
+        MouseClick{
+            anchors.fill: parent
+            color: "transparent"
+        }
     }
-    MouseClick{
-        anchors.fill: parent
-        color: "transparent"
-    }
+
     focus: true
     Keys.onPressed: {
         if (event.key == Qt.Key_F11){

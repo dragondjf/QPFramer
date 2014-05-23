@@ -12,9 +12,6 @@ if __name__ == '__main__':
 
     main = MainWindow()
     main.engine().quit.connect(app.quit)
-    
-    print(main.engine().importPathList())
-    print(main.engine().pluginPathList())
     main.show()
 
     sys.exit(app.exec_())
