@@ -5,7 +5,8 @@ import QtQuick.Layouts 1.0
 import QtWebKit 3.0
 import "component"
 import "affectors"
-import "Loading" 
+import "Loading"
+import "functionPages"
 
 Rectangle{
     id: mainwindow
@@ -81,6 +82,25 @@ Rectangle{
                 skinbar.opacity = 0
             }
         }
+
+        onDropdownmenuClicked:{
+            editMenu.popup();
+        }
+
+        Rectangle{
+            x: 100
+            y: 100
+            id: menubar
+            Menu {
+                id : editMenu
+                MenuItem { text : "orange"  ; onTriggered: titlebar.color = text }
+                MenuItem { text : "lightsteelblue" ; onTriggered: titlebar.color = text }
+                MenuItem { text : "deepskyblue"  ; onTriggered: titlebar.color = text }
+                MenuItem { text : "navajowhite"  ; onTriggered: titlebar.color = text }
+                MenuItem { text : "lemonchiffon" ; onTriggered: titlebar.color = text }
+            }
+        }
+        
     }
 
     HorizontalSeparator{
@@ -131,9 +151,11 @@ Rectangle{
             }
         }
 
-        Text{
-            text: 'CenterWindow'
-            anchors.centerIn: parent
+        // FlickView{
+        //     anchors.fill: parent
+        // }
+        TabFunctionPages{
+            anchors.fill: parent
         }
 
         SideBar{
@@ -141,7 +163,6 @@ Rectangle{
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
-            opacity: 1
 
             gradient: Gradient {
                 GradientStop { position: 0.0; color: skinbar.stopcolor }
@@ -327,7 +348,7 @@ Rectangle{
 
     StatusBar{
         id:statusbar
-        height: 40
+        height: 30
         mainwindowwidth: parent.width
         mainwindowheight: parent.height
         anchors.left: parent.left

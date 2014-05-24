@@ -21,6 +21,7 @@ Rectangle{
     property variant closeHoverIcon
 
     signal skinHovered()
+    signal dropdownmenuClicked()
     signal minClicked()
     signal maxClicked()
     signal closeClicked()
@@ -107,6 +108,7 @@ Rectangle{
                 onEntered: {
                     parent.color="lightgreen";
                     dropdownmenuimage.source = titlebar.dropdownmenuHoverIcon
+                    
                 }
                 onExited: {
                     parent.color="transparent";
@@ -114,8 +116,7 @@ Rectangle{
                 }
                 onWheel: {}
                 onClicked: {
-                    // titlebar.minClicked();
-                    // console.log('112122112');
+                    titlebar.dropdownmenuClicked();
                 }
             }
         }

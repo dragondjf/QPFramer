@@ -50,18 +50,14 @@ Rectangle {
     // }
 
     Text{
-        x: 10
-        y: 10
-        width: 100
-        height: parent.height
+        anchors.verticalCenter: parent.verticalCenter
         font.pointSize: 14
         font.weight: Font.Bold
         color: 'white'
         text: parent.text
-        anchors.margins: 15
 
         SequentialAnimation on opacity {
-            loops: 3;
+            loops: 15;
             NumberAnimation { from: 1; to: 0; duration: 1000 }
             PauseAnimation { duration: 400 }
         }
