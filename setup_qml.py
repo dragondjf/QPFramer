@@ -18,7 +18,7 @@ if __name__ == '__main__':
     buildOptions = dict(
         packages=[],
         excludes=[],
-        includes=['PyQt5.QtNetwork','PyQt5.QtQml', 'PyQt5.QtXmlPatterns', "PyQt5.QtPrintSupport"],
+        includes=['PyQt5.QtNetwork','PyQt5.QtQml', 'PyQt5.QtWebKit','PyQt5.QtWebKit', "PyQt5.QtPrintSupport"],
         icon="gui\skin\images\QFramer.ico",
     )
 
@@ -62,4 +62,9 @@ if __name__ == '__main__':
         shutil.copyfile(os.sep.join([os.getcwd(), 'dll', item]), os.sep.join([build_path, item]))
 
     for item in ['libEGL.dll','Qt5QuickParticles.dll']:
+        shutil.copyfile(os.sep.join([path_pyqt5, item]), os.sep.join([build_path, item]))
+
+    for item in [
+        'Qt5Multimedia.dll','Qt5MultimediaQuick_p.dll', 'Qt5MultimediaWidgets.dll',
+        'Qt5OpenGL.dll', 'Qt5Sensors.dll', 'Qt5WebKitWidgets.dll', 'QtWebProcess.exe']:
         shutil.copyfile(os.sep.join([path_pyqt5, item]), os.sep.join([build_path, item]))
