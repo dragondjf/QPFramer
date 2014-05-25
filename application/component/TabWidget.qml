@@ -62,7 +62,8 @@ Item {
     }
 
     Row {
-        id: header
+        id: headerTabs
+        objectName: "headerTabs"
         anchors.horizontalCenter: parent.horizontalCenter
         // anchors.left: parent.left
         // anchors.leftMargin: 10
@@ -134,7 +135,8 @@ Item {
 
     Item {
         id: stack
+        objectName: 'stackView'
         width: tabWidget.width
-        anchors.top: header.bottom; anchors.bottom: tabWidget.bottom
+        anchors.top: headerTabs.bottom; anchors.bottom: tabWidget.bottom
     }
 }

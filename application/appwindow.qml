@@ -42,6 +42,10 @@ ApplicationWindow {
             height: 30
             isfullscreen: mainwindow.isfullscreen
 
+            skinIcon: "../images/icons/dark/appbar.clothes.shirt.png"
+            skinHoverIcon: "../images/icons/light/appbar.clothes.shirt.png"
+            dropdownmenuIcon: "../images/icons/dark/appbar.control.down.png"
+            dropdownmenuHoverIcon: "../images/icons/light/appbar.control.down.png"
             minIcon: "../images/icons/dark/appbar.minus.png"
             minHoverIcon: "../images/icons/light/appbar.minus.png"
             maxIcon: "../images/icons/dark/appbar.fullscreen.box.png"
@@ -50,6 +54,37 @@ ApplicationWindow {
             normalHoverIcon: "../images/icons/light/appbar.app.png"
             closeIcon: "../images/icons/dark/appbar.close.png"
             closeHoverIcon: "../images/icons/light/appbar.close.png"
+
+            MouseArea{
+                property variant clickPos
+                property bool moveflag
+                anchors.fill: parent
+                anchors.rightMargin: 30 * 5
+                // height: 
+                hoverEnabled: true
+                propagateComposedEvents: true
+                onPressed:{
+                    moveflag = true
+                    clickPos  = Qt.point(mouse.x,mouse.y)
+                    // mouse.accepted = false
+                }
+                onReleased:{
+                    moveflag = false
+                }
+                onPositionChanged:{
+                    if(clickPos && moveflag){
+                        var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
+                        mainwindow.x = mainwindow.x+delta.x;
+                        mainwindow.y = mainwindow.y+delta.y;
+                    }
+                }
+                onClicked:{
+                    mouse.accepted = false;
+                }
+                onDoubleClicked:{
+                    parent.doubleClicked();
+                }
+            }
 
             onMinClicked:{
                 mainwindow.showMinimized()
@@ -67,27 +102,6 @@ ApplicationWindow {
                 console.log('222')
                 mainwindow.showWindow();
             }
-
-            // MouseArea{
-            //     anchors.fill: parent
-            //     propagateComposedEvents: true
-            //     onPressed:{
-            //         // root.dragpoistionY = mouse.y
-            //         mainwindow.dragpoistionX =  mapToItem(parent, mouse.x).x - mainwindow.x
-            //         mainwindow.dragpoistionY = mapToItem(parent, mouse.y).y - mainwindow.y
-            //         // mouse.accepted = true
-            //     }
-            //     onReleased:{
-            //         mainwindow.dragpoistionX = mouse.x
-            //         mainwindow.dragpoistionY = mouse.y
-            //     }
-            //     onPositionChanged:{
-            //         mainwindow.x = mapToItem(parent, mouse.x).x - mainwindow.dragpoistionX
-            //         mainwindow.y = mapToItem(parent, mouse.y).y - mainwindow.dragpoistionY
-            //         // mouse.accepted = true
-
-            //     }
-            // }
         }
 
         HorizontalSeparator{

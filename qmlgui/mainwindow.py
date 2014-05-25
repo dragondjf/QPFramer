@@ -40,6 +40,17 @@ class MainWindow(QtQuick.QQuickView):
         self.prefersize = self.size()
         self.show()
 
+        self.quickItems = {}
+        self.getAllItems(self.rootobj)
+        self.quickItems['page1'].clicked.connect(self.page1Clicked)
+
+    def getAllItems(self, obj):
+        for item in obj.childItems():
+            if item and item.objectName():
+                self.quickItems.update({item.objectName(): item})
+                if item.childItems():
+                    self.getAllItems(item)
+
     def trackStatus(self, status):
         if status == QtQuick.QQuickView.Null:
             print('This QQuickView has no source set.')
@@ -101,6 +112,9 @@ class MainWindow(QtQuick.QQuickView):
         cp = self.screen().availableGeometry().center()
         qr.moveCenter(cp)
         self.setPosition(qr.topLeft())
+
+    def page1Clicked(self):
+        print('45211212212112')
 
 
 class MainConfig(QtCore.QObject):

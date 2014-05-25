@@ -29,6 +29,7 @@ Rectangle{
 
     TitleBar{
         id: titlebar
+        objectName: 'titlebar'
         title: mainconfig.title
         height: 25
         anchors.margins: 0
@@ -112,6 +113,7 @@ Rectangle{
 
     SkinBar{
         id: skinbar
+        objectName: 'skinbar'
         parentWidth: parent.width
         width: titlebar.height * 12
         height: titlebar.height
@@ -126,6 +128,7 @@ Rectangle{
 
     CenterWindow{
         id: centerwindow
+        objectName: 'centerwindow'
         width: parent.width
         anchors.left: parent.left
         anchors.top: horizontalseparator.bottom
@@ -155,11 +158,14 @@ Rectangle{
         //     anchors.fill: parent
         // }
         TabFunctionPages{
+            id: tabs
+            objectName: 'tabs'
             anchors.fill: parent
         }
 
         SideBar{
             id: leftsidebar
+            objectName: "leftsidebar"
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
@@ -209,6 +215,7 @@ Rectangle{
 
         SideBar{
             id: rightsidebar
+            objectName: "rightsidebar"
             function stateshow(state){
                 rightsidebar.state = rightsidebar.state == "primaryAnchors"? state: "primaryAnchors"
             }
@@ -338,6 +345,7 @@ Rectangle{
 
     StatusBar{
         id:statusbar
+        objectName: "statusbar"
         height: 30
         mainwindowwidth: parent.width
         mainwindowheight: parent.height

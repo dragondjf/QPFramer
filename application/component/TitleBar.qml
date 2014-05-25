@@ -73,6 +73,7 @@ Rectangle{
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
+                propagateComposedEvents: true
                 onEntered: {
                     parent.color="lightgreen";
                     skinimage.source = titlebar.skinHoverIcon;
@@ -85,6 +86,7 @@ Rectangle{
                 onWheel: {}
                 onClicked: {
                     // titlebar.minClicked();
+                    mouse.accepted = false;
                 }
             }
         }
@@ -105,6 +107,7 @@ Rectangle{
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
+                propagateComposedEvents: true
                 onEntered: {
                     parent.color="lightgreen";
                     dropdownmenuimage.source = titlebar.dropdownmenuHoverIcon
@@ -117,6 +120,7 @@ Rectangle{
                 onWheel: {}
                 onClicked: {
                     titlebar.dropdownmenuClicked();
+                    mouse.accepted = false;
                 }
             }
         }
@@ -138,6 +142,7 @@ Rectangle{
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
+                propagateComposedEvents: true
                 onEntered: {
                     parent.color="lightgreen";
                     minimage.source = titlebar.minHoverIcon
@@ -149,6 +154,7 @@ Rectangle{
                 onWheel: {}
                 onClicked: {
                     titlebar.minClicked();
+                    mouse.accepted = false;
                 }
             }
         }

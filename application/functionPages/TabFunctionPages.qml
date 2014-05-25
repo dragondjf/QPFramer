@@ -2,12 +2,16 @@ import QtQuick 2.0
 import "../component"
 
 TabWidget {
-    id: tabs
     gcolor: "green"
 
     Rectangle {
+        id: page1
+        objectName: "page1"
         property string title: "Red"
         property string icon: "../images/icons/dark/appbar.tree.leaf.png"
+        
+        signal clicked()
+
         anchors.fill: parent
         color: "transparent"
 
@@ -20,11 +24,26 @@ TabWidget {
                 text: "Roses are red"
                 font.pixelSize: 20
                 wrapMode: Text.WordWrap
+
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    hoverEnabled: false
+                    onEntered: {}
+                    onExited: {}
+                    onWheel: {}
+                    onClicked: {
+                        page1.clicked();
+                        parent.text = "clicked";
+                    }
+                }
             }
         }
     }
 
     Rectangle {
+        id: page2
+        objectName: "page2"
         property string title: "Green"
         property string icon: "../images/icons/dark/appbar.tree.leaf.three.png"
         anchors.fill: parent
@@ -44,6 +63,8 @@ TabWidget {
     }
 
     Rectangle {
+        id: page3
+        objectName: "page3"
         property string title: "Blue"
         property string icon: "../images/icons/dark/appbar.tree.pine.png"
         anchors.fill: parent
