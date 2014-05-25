@@ -225,36 +225,26 @@ Rectangle{
             }
             state: "primary"
 
-            // Text{
-            //     text: 'rightsidebar'
-            //     anchors.centerIn: parent
-            // }
-
             WebView {
-            id: webView
-            anchors.fill: parent
-            url:"http://www.baidu.com"
-            // canGoBack: true
-            // canGoForward: true
-            objectName: "myWebView"
-
-            onLoadingChanged: {
-                console.log("onLoadingChanged: status=" + loadRequest.status);
-                if (loadRequest.status == WebView.LoadStartedStatus) 
-                    console.log("Loading started...");
-                if (loadRequest.status == WebView.LoadFailedStatus) {
-                   console.log("Load failed! Error code: " + loadRequest.errorCode);
-                   if (loadRequest.errorCode === NetworkReply.OperationCanceledError)
-                       console.log("Load cancelled by user");
-                } 
-                if (loadRequest.status == WebView.LoadSucceededStatus) 
-                    console.log("Page loaded!");
-            }
-        }
-            
-            MouseClick{
+                id: webView
                 anchors.fill: parent
-                color: "transparent"
+                url:"http://www.baidu.com"
+                // canGoBack: true
+                // canGoForward: true
+                objectName: "myWebView"
+
+                onLoadingChanged: {
+                    console.log("onLoadingChanged: status=" + loadRequest.status);
+                    if (loadRequest.status == WebView.LoadStartedStatus) 
+                        console.log("Loading started...");
+                    if (loadRequest.status == WebView.LoadFailedStatus) {
+                       console.log("Load failed! Error code: " + loadRequest.errorCode);
+                       if (loadRequest.errorCode === NetworkReply.OperationCanceledError)
+                           console.log("Load cancelled by user");
+                    } 
+                    if (loadRequest.status == WebView.LoadSucceededStatus) 
+                        console.log("Page loaded!");
+                }
             }
 
             Row {
