@@ -10,8 +10,8 @@ QFramer 是基于PyQt5的一款快速开发框架
 ####2.什么是QFramer?
 > 得益于Qt的强大和Python的高度开发效率，使用PyQt/PySide进行桌面开发将是一场美妙体验。正因为如此,笔者开发了一套基于PyQt5的快速开发框架QFramer，方便快速搭建框架原型，把更多的精力放大相应的业务逻辑上。
 
-开发环境：Python3.5 + PyQt5 + cx_Freeze
-**QFamer**提供了两种开发模式
+开发环境：Python2.7/Python3.5 + PyQt5 + cx_Freeze
+**QFramer**提供了两种开发模式
 + **混合模式**： 混合``QWiget + qss + QtWebkit + html + css + js + Qt Quick``,利用``Qwidget``原生控件搭建外层框架，``QtWebkit``和``QtQuick``作为内嵌模块，无所不能...
 + **qml模式**： 单独使用``QtQuick``技术，利用``qml + js + QQuickView``进行开发，界面全部使用qml书写
 
