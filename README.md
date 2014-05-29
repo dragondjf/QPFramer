@@ -50,21 +50,23 @@ QFramer 是基于PyQt5的一款快速开发框架
 
 ``混合模式``： 
                
+        python2.7 main.py
+        python3.3 main.py
+``qml模式``：  
+
+        python2.7 qmlmain.py
+        python3.3 qmlmain.py
+
+####6.window下软件获取及打包软件发布
+
+``混合模式``： 
+               
         python2.7 setup_py2.7.py
         python3.3 setup_py3.3.py
 ``qml模式``：  
 
         python2.7 setup_qml_py2.7.py
         python3.3 setup_qml_py3.3.py
-
-####6.window下软件获取及打包软件发布
-
-``混合模式``： 
-               
-        python setup.py
-``qml模式``：  
-
-        python setup_qml.py
 
 ####7.欢迎拍砖，希望再一次得到提速
 + **QFramer** ``Github项目地址``:https://github.com/dragondjf/QFramer
