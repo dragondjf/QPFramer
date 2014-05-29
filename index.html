@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Qframer : Frame based on PyQt5" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Qframer</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/dragondjf/QFramer">View on GitHub</a>
+
+          <h1 id="project_title">Qframer</h1>
+          <h2 id="project_tagline">Frame based on PyQt5</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/dragondjf/QFramer/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/dragondjf/QFramer/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="qframer-%E6%98%AF%E5%9F%BA%E4%BA%8Epyqt5%E7%9A%84%E4%B8%80%E6%AC%BE%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6" class="anchor" href="#qframer-%E6%98%AF%E5%9F%BA%E4%BA%8Epyqt5%E7%9A%84%E4%B8%80%E6%AC%BE%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6"><span class="octicon octicon-link"></span></a>QFramer 是基于PyQt5的一款快速开发框架</h1>
+
+<h4>
+<a name="1-%E5%9F%BA%E4%BA%8Eqt-pyqt-pyside%E5%BC%80%E5%8F%91gui%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BC%80%E5%8F%91%E6%96%B9%E5%BC%8F" class="anchor" href="#1-%E5%9F%BA%E4%BA%8Eqt-pyqt-pyside%E5%BC%80%E5%8F%91gui%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BC%80%E5%8F%91%E6%96%B9%E5%BC%8F"><span class="octicon octicon-link"></span></a>1. 基于Qt/ PyQt /PySide开发GUI常用的开发方式</h4>
+
+<ul>
+<li><code>QWidget + qss</code></li>
+<li><code>QtWebkit + html + css + js</code></li>
+<li>
+<code>Qt Quick</code>
+<strong>这三种技术都可以高效、快速、完美的开发出你所需要的跨平台桌面软件</strong>
+目前Qt官方主推的开发方式为<code>Qt Quick</code>，采用类json的语言qml进行快速开发，上手容易，功能强大，Ubutun、Linux Deepin等Linux桌面开发团队都在积极使用qml进行桌面开发, 相信qml能在桌面开发走的长远。</li>
+</ul><h4>
+<a name="2%E4%BB%80%E4%B9%88%E6%98%AFqframer" class="anchor" href="#2%E4%BB%80%E4%B9%88%E6%98%AFqframer"><span class="octicon octicon-link"></span></a>2.什么是QFramer?</h4>
+
+<blockquote>
+<p>得益于Qt的强大和Python的高度开发效率，使用PyQt/PySide进行桌面开发将是一场美妙体验。正因为如此,笔者开发了一套基于PyQt5的快速开发框架QFramer，方便快速搭建框架原型，把更多的精力放大相应的业务逻辑上。</p>
+</blockquote>
+
+<p>开发环境：Python3.5 + PyQt5 + cx_Freeze
+<strong>QFamer</strong>提供了两种开发模式</p>
+
+<ul>
+<li>
+<strong>混合模式</strong>： 混合<code>QWiget + qss + QtWebkit + html + css + js + Qt Quick</code>,利用<code>Qwidget</code>原生控件搭建外层框架，<code>QtWebkit</code>和<code>QtQuick</code>作为内嵌模块，无所不能...</li>
+<li>
+<strong>qml模式</strong>： 单独使用<code>QtQuick</code>技术，利用<code>qml + js + QQuickView</code>进行开发，界面全部使用qml书写</li>
+</ul><h4>
+<a name="3-qframer%E4%B9%8B%E6%B7%B7%E5%90%88%E6%A8%A1%E5%BC%8F" class="anchor" href="#3-qframer%E4%B9%8B%E6%B7%B7%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="octicon octicon-link"></span></a>3. QFramer之<code>混合模式</code>
+</h4>
+
+<ul>
+<li>QWidget
+<img src="doc/images/%E6%B7%B7%E5%90%88%E6%A8%A1%E5%BC%8Fqwidget.png" alt="Alt text">
+</li>
+<li>QtWebkit
+<img src="doc/images/%E6%B7%B7%E5%90%88%E6%A8%A1%E5%BC%8Fwebkit.png" alt="Alt text">
+</li>
+<li>QtQuick
+<img src="doc/images/%E6%B7%B7%E5%90%88%E6%A8%A1%E5%BC%8F.png" alt="Alt text"><img src="doc/images/%E6%B7%B7%E5%90%88%E6%A8%A1%E5%BC%8Fquick.png" alt="Alt text"><img src="doc/images/%E6%B7%B7%E5%90%88%E6%A8%A1%E5%BC%8Fquick2.png" alt="Alt text">
+</li>
+</ul><h4>
+<a name="4-qfamer%E4%B9%8Bqml%E6%A8%A1%E5%BC%8F" class="anchor" href="#4-qfamer%E4%B9%8Bqml%E6%A8%A1%E5%BC%8F"><span class="octicon octicon-link"></span></a>4. <strong>QFamer之<code>qml模式</code></strong>
+</h4>
+
+<ul>
+<li>示例1
+<img src="doc/images/qml4.png" alt="Alt text">
+</li>
+<li>示例2
+<img src="doc/images/qml5.png" alt="Alt text">
+</li>
+<li>示例3
+<img src="doc/images/qml1.png" alt="Alt text">
+</li>
+<li>示例4
+<img src="doc/images/qml2.png" alt="Alt text">
+</li>
+<li>示例5
+<img src="doc/images/qml5.png" alt="Alt text">
+</li>
+</ul><h4>
+<a name="5%E8%BF%90%E8%A1%8C%E8%BD%AF%E4%BB%B6" class="anchor" href="#5%E8%BF%90%E8%A1%8C%E8%BD%AF%E4%BB%B6"><span class="octicon octicon-link"></span></a>5.运行软件</h4>
+
+<p><code>QFramer</code> <code>Github</code>地址:<a href="https://github.com/dragondjf/QFramer">https://github.com/dragondjf/QFramer</a></p>
+
+<pre><code>    git clone https://github.com/dragondjf/QFramer
+</code></pre>
+
+<p>目前支持python2.7和python3.3</p>
+
+<ul>
+<li>PyQt5-5.2-gpl-Py2.7-Qt5.2.0-x32 下载地址：<a href="http://pan.baidu.com/s/1kTl0Qbl">http://pan.baidu.com/s/1kTl0Qbl</a>
+</li>
+<li>PyQt5-5.2-gpl-Py3.3-Qt5.2.0-x32 下载地址：<a href="http://pan.baidu.com/s/1fD8a6">http://pan.baidu.com/s/1fD8a6</a>
+</li>
+</ul><p><code>混合模式</code>： </p>
+
+<pre><code>    python2.7 main.py
+    python3.3 main.py
+</code></pre>
+
+<p><code>qml模式</code>：  </p>
+
+<pre><code>    python2.7 qmlmain.py
+    python3.3 qmlmain.py
+</code></pre>
+
+<h4>
+<a name="6window%E4%B8%8B%E8%BD%AF%E4%BB%B6%E8%8E%B7%E5%8F%96%E5%8F%8A%E6%89%93%E5%8C%85%E8%BD%AF%E4%BB%B6%E5%8F%91%E5%B8%83" class="anchor" href="#6window%E4%B8%8B%E8%BD%AF%E4%BB%B6%E8%8E%B7%E5%8F%96%E5%8F%8A%E6%89%93%E5%8C%85%E8%BD%AF%E4%BB%B6%E5%8F%91%E5%B8%83"><span class="octicon octicon-link"></span></a>6.window下软件获取及打包软件发布</h4>
+
+<p><code>混合模式</code>： </p>
+
+<pre><code>    python2.7 setup_py2.7.py
+    python3.3 setup_py3.3.py
+</code></pre>
+
+<p><code>qml模式</code>：  </p>
+
+<pre><code>    python2.7 setup_qml_py2.7.py
+    python3.3 setup_qml_py3.3.py
+</code></pre>
+
+<h4>
+<a name="7%E6%AC%A2%E8%BF%8E%E6%8B%8D%E7%A0%96%E5%B8%8C%E6%9C%9B%E5%86%8D%E4%B8%80%E6%AC%A1%E5%BE%97%E5%88%B0%E6%8F%90%E9%80%9F" class="anchor" href="#7%E6%AC%A2%E8%BF%8E%E6%8B%8D%E7%A0%96%E5%B8%8C%E6%9C%9B%E5%86%8D%E4%B8%80%E6%AC%A1%E5%BE%97%E5%88%B0%E6%8F%90%E9%80%9F"><span class="octicon octicon-link"></span></a>7.欢迎拍砖，希望再一次得到提速</h4>
+
+<ul>
+<li>
+<strong>QFramer</strong> <code>Github项目地址</code>:<a href="https://github.com/dragondjf/QFramer">https://github.com/dragondjf/QFramer</a>
+</li>
+<li>QQ: 465398889</li>
+<li>email: <code>dragondjf@gmail.com</code> or <code>ding465398889@163.com</code>
+</li>
+<li>如果有一点点帮助到你了，<code>It's my pleasure!</code>；如果有什么不足，欢迎指正；如果这个框架可以一起开发完善，请联系我，谢谢！</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Qframer maintained by <a href="https://github.com/dragondjf">dragondjf</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
