@@ -38,7 +38,7 @@ QFramer 是基于PyQt5的一款快速开发框架
 + 示例5
 ![Alt text](doc/images/qml5.png)
 
-####6.运行软件
+####5.运行软件
 ``QFramer`` ``Github``地址:https://github.com/dragondjf/QFramer
 
         git clone https://github.com/dragondjf/QFramer
