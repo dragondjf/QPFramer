@@ -13,30 +13,32 @@ TabWidget {
         signal clicked()
 
         anchors.fill: parent
+        anchors.margins: 100
         color: "transparent"
 
         Rectangle {
             anchors.fill: parent; anchors.margins: 0
-            color: "#ff7f7f"
-            Text {
-                width: parent.width - 20
-                anchors.centerIn: parent; horizontalAlignment: Qt.AlignHCenter
-                text: "Roses are red"
-                font.pixelSize: 20
-                wrapMode: Text.WordWrap
-
-                MouseArea {
-                    anchors.fill: parent
-                    cursorShape: Qt.PointingHandCursor
-                    hoverEnabled: false
-                    onEntered: {}
-                    onExited: {}
-                    onWheel: {}
-                    onClicked: {
-                        page1.clicked();
-                        parent.text = "clicked";
-                    }
-                }
+            color: "transparent"
+            Grid {
+                columns: 4
+                rows: 4
+                spacing: 5
+                Button { text: color; color: "red"; rotationX: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "green"; rotationX: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "blue"; rotationY: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "cyan"; rotationY: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "magenta"; rotationX: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "red"; rotationY: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "green"; rotationY: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "blue"; rotationX: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "cyan"; rotationY: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "magenta"; rotationZ: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "red"; rotationX: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "green"; rotationY: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "blue"; rotationX: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "cyan"; rotationZ: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "magenta"; rotationX: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
+                Button { text: color; color: "magenta"; rotationY: 1; width: page1.width / 4 -5; height: page1.height / 4 - 5 }
             }
         }
     }
