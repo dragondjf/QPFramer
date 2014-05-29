@@ -38,12 +38,22 @@ QFramer 是基于PyQt5的一款快速开发框架
 + 示例5
 ![Alt text](doc/images/qml5.png)
 
-####5.window下软件获取及打包软件发布
-> 确保python版本为``python3.5``, ``cx_Freeze``为python3最新版
-
+####6.运行软件
 ``QFramer`` ``Github``地址:https://github.com/dragondjf/QFramer
 
         git clone https://github.com/dragondjf/QFramer
+
+目前支持python2.7和python3.3
+PyQt5-5.2-gpl-Py2.7-Qt5.2.0-x32 下载地址：http://pan.baidu.com/s/1kTl0Qbl
+PyQt5-5.2-gpl-Py3.3-Qt5.2.0-x32 下载地址：http://pan.baidu.com/s/1fD8a6
+``混合模式``： 
+               
+        python main.py
+``qml模式``：  
+
+        python qmlmain.py
+
+####6.window下软件获取及打包软件发布
 
 ``混合模式``： 
                
@@ -52,7 +62,7 @@ QFramer 是基于PyQt5的一款快速开发框架
 
         python setup_qml.py
 
-####6.欢迎拍砖，希望再一次得到提速
+####7.欢迎拍砖，希望再一次得到提速
 + **QFramer** ``Github项目地址``:https://github.com/dragondjf/QFramer
 + QQ: 465398889
 + email: ``dragondjf@gmail.com`` or ``ding465398889@163.com``
