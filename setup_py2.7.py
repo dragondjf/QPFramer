@@ -157,7 +157,7 @@ if __name__ == '__main__':
     buildOptions = dict(
         packages=[],
         excludes=[],
-        includes=['PyQt5.QtWebKit', 'PyQt5.QtQml', "PyQt5.QtPrintSupport"],
+        includes=['sip', 'atexit', 'PyQt5.QtWebKit', 'PyQt5.QtQml', "PyQt5.QtPrintSupport"],
         icon="gui\skin\images\QFramer.ico",
     )
 
@@ -183,7 +183,7 @@ if __name__ == '__main__':
         delete_file_folder(path)
 
     path_pyqt5 = PyQt5.__path__[0]
-    build_path = os.sep.join([os.getcwd(), 'build', 'exe.win32-3.3'])
+    build_path = os.sep.join([os.getcwd(), 'build', 'exe.win32-2.7'])
 
     sys.argv.append("build")
     setup(
@@ -200,8 +200,10 @@ if __name__ == '__main__':
     for item in ['qml']:
         shutil.copytree(os.sep.join([path_pyqt5, item]), os.sep.join([build_path, item]))
 
-    for item in ['qml']:
-        copytree(os.sep.join([path_pyqt5, item]), os.sep.join([build_path]))
+    for item in ['platforms']:
+        shutil.copytree(os.sep.join([path_pyqt5, 'plugins', item]), os.sep.join([build_path, item]))
+    # for item in ['qml']:
+    #     copytree(os.sep.join([path_pyqt5, item]), os.sep.join([build_path]))
 
     for item in ['options']:
         os.mkdir(os.sep.join([build_path, item]))

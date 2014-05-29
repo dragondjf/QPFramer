@@ -43,7 +43,7 @@ class SettingsMenu(QtWidgets.QMenu):
                         "checkable": True
                     },
                     {
-                        'name': '中文',
+                        'name': 'Chinese',
                         'icon': u'',
                         'shortcut': u'',
                         'trigger': 'Chinese',
@@ -71,7 +71,7 @@ class SettingsMenu(QtWidgets.QMenu):
             if self.sender() is action:
                 action.setChecked(True)
             else:
-                action.setChecked()
+                action.setChecked(False)
 
     def creatMenus(self, menusettings):
         for menuaction in menusettings:

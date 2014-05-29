@@ -19,6 +19,7 @@ class QuickViwer(QtQuick.QQuickView):
         self.con = MyClass()
         context = self.rootContext()
         context.setContextProperty("myclass", self.con)
+        self.engine().addImportPath(os.sep.join([os.getcwd(), 'qml']))
         # self.setSource(QtCore.QUrl.fromLocalFile('gui/qml/demo.qml'))
         # rootobj = self.rootObject()
         # rootobj.clicked.connect(self.on_qml_mouse_clicked)

@@ -42,7 +42,7 @@ class MenuBar(QtWidgets.QMenuBar):
                                     "checkable": True
                                 },
                                 {
-                                    'name': '中文',
+                                    'name': 'Chinese',
                                     'icon': u'',
                                     'shortcut': u'',
                                     'trigger': 'Chinese',
