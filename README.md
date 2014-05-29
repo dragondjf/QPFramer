@@ -44,14 +44,17 @@ QFramer 是基于PyQt5的一款快速开发框架
         git clone https://github.com/dragondjf/QFramer
 
 目前支持python2.7和python3.3
+
 PyQt5-5.2-gpl-Py2.7-Qt5.2.0-x32 下载地址：http://pan.baidu.com/s/1kTl0Qbl
 PyQt5-5.2-gpl-Py3.3-Qt5.2.0-x32 下载地址：http://pan.baidu.com/s/1fD8a6
 ``混合模式``： 
                
-        python main.py
+        python2.7 setup_py2.7.py
+        python3.3 setup_py3.3.py
 ``qml模式``：  
 
-        python qmlmain.py
+        python2.7 setup_qml_py2.7.py
+        python3.3 setup_qml_py3.3.py
 
 ####6.window下软件获取及打包软件发布
 
