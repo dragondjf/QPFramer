@@ -10,7 +10,7 @@ __url__ = ""
 __description__ = '''
     This is a SoftwareFrame based on PyQt5.
 '''
-__logoico__ = "gui/skin/images/QFramer.png"
+__logoico__ = os.sep.join(['gui', 'skin','images','QFramer.png'])
 __version__ = '1.0.0'
 
 
@@ -18,12 +18,12 @@ mainwindow = {
     'title': __softwarename__,
     'size': (0.8, 0.9),
     'minsize': (0.4, 0.3),
-    'icon': "gui/skin/images/QFramer.png",
+    'icon': __logoico__,
     'fullscreenflag': True,
 }
 
 logo_ico = __logoico__
-logo_img_url = "gui/skin/images/logo.png"
+logo_img_url = os.sep.join(['gui', 'skin','images','logo.png'])
 logo_title = u''
 
 from .dialogconfig import dialogsettings
