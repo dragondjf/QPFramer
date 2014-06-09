@@ -5,7 +5,7 @@ import shutil
 import zipfile
 from cx_Freeze import setup, Executable
 import PyQt5
-from setup import *
+from setup_py34 import *
 
 if __name__ == '__main__':
 
@@ -38,7 +38,7 @@ if __name__ == '__main__':
         delete_file_folder(path)
 
     path_pyqt5 = PyQt5.__path__[0]
-    build_path = os.sep.join([os.getcwd(), 'build', 'exe.win32-3.3'])
+    build_path = os.sep.join([os.getcwd(), 'build', 'exe.win32-3.4'])
 
     sys.argv.append("build")
     setup(

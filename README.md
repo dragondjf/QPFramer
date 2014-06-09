@@ -43,30 +43,37 @@ QFramer 是基于PyQt5的一款快速开发框架
 
         git clone https://github.com/dragondjf/QFramer
 
-目前支持python2.7和python3.3
+目前支持python2.7、python3.3、python3.4
 
 + PyQt5-5.2-gpl-Py2.7-Qt5.2.0-x32 下载地址：http://pan.baidu.com/s/1kTl0Qbl
 + PyQt5-5.2-gpl-Py3.3-Qt5.2.0-x32 下载地址：http://pan.baidu.com/s/1fD8a6
++ PyQt5-5.3-gpl-Py3.4-Qt5.3.0-x32 下载地址：http://pan.baidu.com/s/1c0irNzU
 
 ``混合模式``： 
                
-        python2.7 main.py
-        python3.3 main.py
+        python27 main.py
+        python33 main.py
+        python34 main.py
 ``qml模式``：  
 
-        python2.7 qmlmain.py
-        python3.3 qmlmain.py
+        python27 qmlmain.py
+        python33 qmlmain.py
+        python34 qmlmain.py
 
 ####6.window下软件获取及打包软件发布
 
 ``混合模式``： 
                
-        python2.7 setup_py2.7.py
-        python3.3 setup_py3.3.py
+        python27 setup_py27.py
+        python33 setup_py33.py
+        python34 setup_py34.py
 ``qml模式``：  
 
-        python2.7 setup_qml_py2.7.py
-        python3.3 setup_qml_py3.3.py
+        python27 setup_qml_py27.py
+        python33 setup_qml_py33.py
+        python34 setup_qml_py34.py
+>cx_Freeze下载地址：
+        http://swx.jp-free-proxy.biz/browse.php?u=90b6829952cbOi8vd3d3LmxmZC51Y2kuZWR1L35nb2hsa2UvcHl0aG9ubGlicy8%3D&b=5#cx_freeze
 
 ####7.欢迎拍砖，希望再一次得到提速
 + **QFramer** ``Github项目地址``:https://github.com/dragondjf/QFramer
